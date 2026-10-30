@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Hora de reunir o que você aprendeu. Vamos construir uma lista de estudos que permite cadastrar assuntos, marcar conclusões e excluir itens, com persistência quando o navegador permitir."/><meta name="theme-color" content="#faf9f6"><title>Projeto final: minha lista de estudos · JavaScript em prática</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/styles.css"><script src="../assets/app.js" defer></script></head>
+<body data-module="16"><a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+<header class="site-header"><a class="brand" href="../index.html" aria-label="JavaScript em prática, início"><span class="brand-mark">js<span>.</span></span><span>em prática<span class="brand-dot">.</span></span></a><div class="header-links"><span class="header-caption">MENOS TEORIA SOLTA. MAIS CÓDIGO.</span><a href="../index.html#trilha">Explorar o curso <span aria-hidden="true">↗</span></a><button class="menu-toggle" type="button" aria-controls="course-navigation" aria-expanded="false">☰ <span>Módulos</span></button></div></header>
+<div class="app-shell"><aside class="sidebar" id="course-navigation" aria-label="Navegação do curso">
+    <a class="course-back" href="../index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 4h6a3 3 0 0 1 3 3v14a4 4 0 0 0-4-2H3zM21 4h-6a3 3 0 0 0-3 3v14a4 4 0 0 1 4-2h5z"/></svg> SEU GUIA DE ESTUDOS</a>
+    <div class="side-course"><span class="mini-js">JS</span><div><strong>JavaScript em prática</strong><span>Do zero ao seu primeiro projeto</span></div></div>
+    <div class="progress-box"><div class="progress-label"><span>Seu progresso</span><strong data-progress-percent>0%</strong></div><progress data-course-progress max="16" value="0" aria-label="Módulos concluídos">0 de 16</progress><p><span data-progress-count>0</span> de 16 módulos concluídos</p></div>
+    <nav class="module-nav" aria-label="Módulos"><p class="nav-group">Fundamentos</p><a href="../modulos/01.html" class="module-link " data-module-link="1" ><span class="nav-number">01</span><span>Primeiros passos com JavaScript</span><span class="nav-check" aria-label="Concluído" hidden>✓</span></a><a href="../modulos/02.html" class="module-link " data-module-link="2" ><span class="nav-number">02</span><span>Sintaxe, instruções e comentários</span><span class="nav-check" aria-label="Concluído" hidden>✓</span></a><a href="../modulos/03.html" class="module-link " data-module-link="3" ><span class="nav-number">03</span><span>Variáveis, constantes e escopo</span><span class="nav-check" aria-label="Concluído" hidden>✓</span></a><a href="../modulos/04.html" class="module-link " data-module-link="4" ><span class="nav-number">04</span><span>Tipos de dados e conversões</span><span class="nav-check" aria-label="Concluído" hidden>✓</span></a><a href="../modulos/05.html" class="module-link " data-module-link="5" ><span class="nav-number">05</span><span>Operadores e expressões</span><span class="nav-check" aria-label="Concluído" hidden>✓</span></a><p class="nav-group">Lógica e dados</p><a href="../modulos/06.html" class="module-link " data-module-link="6" ><span class="nav-number">06</span><span>Condicionais e decisões</span><span class="nav-check" aria-label="Concluído" hidden>✓</span></a><a href="../modulos/07.html" class="module-link " data-module-link="7" ><span class="nav-number">07</span><span>Laços de repetição</span><span class="nav-check" aria-label="Concluído" hidden>✓</span></a><a href="../modulos/08.html" class="module-link " data-module-link="8" ><span class="nav-number">08</span><span>Funções e escopo</span><span class="nav-check" aria-label="Concluído" hidden>✓</span></a><a href="../modulos/09.html" class="module-link " data-module-link="9" ><span class="nav-number">09</span><span>Arrays e métodos essenciais</span><span class="nav-check" aria-label="Concluído" hidden>✓</span></a><a href="../modulos/10.html" class="module-link " data-module-link="10" ><span class="nav-number">10</span><span>Objetos e propriedades</span><span class="nav-check" aria-label="Concluído" hidden>✓</span></a><p class="nav-group">JavaScript na web</p><a href="../modulos/11.html" class="module-link " data-module-link="11" ><span class="nav-number">11</span><span>DOM: JavaScript encontra a página</span><span class="nav-check" aria-label="Concluído" hidden>✓</span></a><a href="../modulos/12.html" class="module-link " data-module-link="12" ><span class="nav-number">12</span><span>Eventos e interação</span><span class="nav-check" aria-label="Concluído" hidden>✓</span></a><a href="../modulos/13.html" class="module-link " data-module-link="13" ><span class="nav-number">13</span><span>Formulários e validação</span><span class="nav-check" aria-label="Concluído" hidden>✓</span></a><a href="../modulos/14.html" class="module-link " data-module-link="14" ><span class="nav-number">14</span><span>JSON e armazenamento local</span><span class="nav-check" aria-label="Concluído" hidden>✓</span></a><p class="nav-group">Prática e projeto</p><a href="../modulos/15.html" class="module-link " data-module-link="15" ><span class="nav-number">15</span><span>JavaScript assíncrono</span><span class="nav-check" aria-label="Concluído" hidden>✓</span></a><a href="../modulos/16.html" class="module-link active" data-module-link="16" aria-current="page"><span class="nav-number">16</span><span>Projeto final: minha lista de estudos</span><span class="nav-check" aria-label="Concluído" hidden>✓</span></a></nav>
+    <div class="sidebar-note"><span aria-hidden="true">✦</span><p>Um conceito de cada vez.<br><strong>Uma nova possibilidade a cada aula.</strong></p></div>
+  </aside><main id="conteudo" class="main-content lesson-main"><div class="breadcrumb"><a href="../index.html">O curso</a><span aria-hidden="true">/</span><span>Prática e projeto</span><span aria-hidden="true">/</span><strong>Módulo 16</strong></div><header class="lesson-header"><div class="lesson-kicker"><span class="eyebrow">MÓDULO 16 DE 16</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/></svg> 60 min de estudo</span></div><h1>Projeto final: minha lista de estudos<span>.</span></h1><p>Hora de reunir o que você aprendeu. Vamos construir uma lista de estudos que permite cadastrar assuntos, marcar conclusões e excluir itens, com persistência quando o navegador permitir.</p><div class="lesson-badges"><span>Prática e projeto</span><span>Aplicação na web</span></div></header>
+<div class="lesson-layout"><article class="lesson-article"><section class="objectives" id="objetivos"><div class="eyebrow"><span aria-hidden="true">↗</span> AO FINAL DESTE MÓDULO, VOCÊ VAI</div><ul><li><span aria-hidden="true">✓</span>Integrar funções, arrays, objetos, DOM e eventos.</li><li><span aria-hidden="true">✓</span>Validar entradas e renderizar o estado da aplicação.</li><li><span aria-hidden="true">✓</span>Persistir dados com tratamento de falhas.</li></ul></section>
+<div class="practice-notice"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m8 6-6 6 6 6m8-12 6 6-6 6m-3-15-2 18"/></svg><p><strong>Leia, experimente e observe.</strong> Os exemplos só executam ao clicar em “Executar”, em uma área isolada. Para experimentar mudanças, copie o código para o console do navegador ou um arquivo próprio.</p></div>
+<section class="lesson-section" id="parte-1"><div class="section-index">01 <span></span></div><h2>Planeje antes de escrever</h2><p>O estado será um array de objetos com id, titulo e concluida. A interface será reconstruída a partir desse estado após cada ação. Assim, o HTML reflete os dados e não precisa ser usado como banco de informações.</p><p>Critérios de aceite: impedir títulos vazios, limitar cada título a 80 caracteres, adicionar itens por Enter ou botão, alternar conclusão, excluir itens e mostrar quantos ainda estão pendentes. Persistência é um aprimoramento: a lista deve continuar funcionando mesmo quando ela estiver indisponível.</p><p>Execute a implementação abaixo e experimente o fluxo. No iframe isolado, a lista funciona em memória; a mensagem de armazenamento explica a limitação. Em uma página própria servida por HTTP, ela usa localStorage.</p><div class="code-example"><div class="code-toolbar"><span><i aria-hidden="true"></i> Exemplo prático</span><div><span class="language-label">JavaScript</span><button class="copy-button" type="button" aria-label="Copiar código JavaScript">Copiar</button></div></div><pre tabindex="0" aria-label="Código JavaScript"><code class="lesson-code">const chave = &quot;minha-lista-js:v1&quot;;
+let assuntos = [];
+const aviso = document.querySelector(&quot;#aviso&quot;);
+const campo = document.querySelector(&quot;#assunto&quot;);
+
+try {
+  const texto = localStorage.getItem(chave);
+  const dados = texto === null ? [] : JSON.parse(texto);
+  const validos = Array.isArray(dados) &amp;&amp; dados.every((item) =&gt;
+    item &amp;&amp; typeof item.id === &quot;string&quot; &amp;&amp;
+    typeof item.titulo === &quot;string&quot; &amp;&amp; item.titulo.trim().length &gt; 0 &amp;&amp;
+    item.titulo.length &lt;= 80 &amp;&amp; typeof item.concluida === &quot;boolean&quot;
+  );
+  if (!validos || new Set(dados.map((item) =&gt; item.id)).size !== dados.length) {
+    throw new Error(&quot;Formato inválido&quot;);
+  }
+  assuntos = dados;
+} catch (erro) {
+  aviso.textContent = &quot;Sem dados salvos: a lista funciona nesta sessão.&quot;;
+}
+
+function salvar() {
+  try {
+    localStorage.setItem(chave, JSON.stringify(assuntos));
+    aviso.textContent = &quot;Lista salva neste navegador.&quot;;
+  } catch (erro) {
+    aviso.textContent = &quot;Armazenamento indisponível: lista apenas nesta sessão.&quot;;
+  }
+}
+
+function renderizar() {
+  const lista = document.querySelector(&quot;#assuntos&quot;);
+  lista.replaceChildren();
+  for (const assunto of assuntos) {
+    const item = document.createElement(&quot;li&quot;);
+    const rotulo = document.createElement(&quot;label&quot;);
+    const checkbox = document.createElement(&quot;input&quot;);
+    checkbox.type = &quot;checkbox&quot;;
+    checkbox.checked = assunto.concluida;
+    checkbox.addEventListener(&quot;change&quot;, () =&gt; {
+      assunto.concluida = checkbox.checked;
+      salvar();
+      atualizarContagem();
+    });
+    const titulo = document.createElement(&quot;span&quot;);
+    titulo.textContent = assunto.titulo;
+    rotulo.append(checkbox, titulo);
+    const excluir = document.createElement(&quot;button&quot;);
+    excluir.type = &quot;button&quot;;
+    excluir.textContent = &quot;Excluir&quot;;
+    excluir.setAttribute(&quot;aria-label&quot;, `Excluir ${assunto.titulo}`);
+    excluir.addEventListener(&quot;click&quot;, () =&gt; {
+      assuntos = assuntos.filter((item) =&gt; item.id !== assunto.id);
+      salvar();
+      renderizar();
+      campo.focus();
+    });
+    item.append(rotulo, excluir);
+    lista.append(item);
+  }
+  atualizarContagem();
+}
+
+function atualizarContagem() {
+  const quantidade = assuntos.filter((item) =&gt; !item.concluida).length;
+  document.querySelector(&quot;#pendencias&quot;).textContent =
+    `Assuntos pendentes: ${quantidade}`;
+}
+
+document.querySelector(&quot;#novo-assunto&quot;).addEventListener(&quot;submit&quot;, (event) =&gt; {
+  event.preventDefault();
+  const titulo = campo.value.trim();
+  if (titulo.length === 0 || titulo.length &gt; 80) {
+    aviso.textContent = &quot;Informe um assunto de 1 a 80 caracteres.&quot;;
+    campo.focus();
+    return;
+  }
+  assuntos.push({ id: crypto.randomUUID(), titulo, concluida: false });
+  campo.value = &quot;&quot;;
+  salvar();
+  renderizar();
+  campo.focus();
+});
+renderizar();</code></pre><details class="html-support"><summary>Ver HTML de apoio <span aria-hidden="true">+</span></summary><pre tabindex="0"><code class="lesson-html">&lt;h3&gt;Minha lista de estudos&lt;/h3&gt;
+&lt;form id=&quot;novo-assunto&quot;&gt;
+  &lt;label for=&quot;assunto&quot;&gt;O que você vai estudar?&lt;/label&gt;
+  &lt;input id=&quot;assunto&quot; required maxlength=&quot;80&quot; autocomplete=&quot;off&quot;&gt;
+  &lt;button type=&quot;submit&quot;&gt;Adicionar&lt;/button&gt;
+&lt;/form&gt;
+&lt;p id=&quot;aviso&quot; role=&quot;status&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;pendencias&quot;&gt;&lt;/p&gt;
+&lt;ul id=&quot;assuntos&quot;&gt;&lt;/ul&gt;</code></pre><button class="copy-html" type="button">Copiar HTML</button></details><div class="code-actions"><span>Interaja com a página de demonstração</span><button class="run-button" type="button"><span aria-hidden="true">▷</span> Executar</button></div><div class="example-output" hidden><div class="output-header"><span>DEMONSTRAÇÃO ISOLADA</span><button class="clear-output" type="button">Fechar saída</button></div><div class="frame-container"></div></div></div></section><section class="lesson-section" id="parte-2"><div class="section-index">02 <span></span></div><h2>Leve o projeto para o seu computador</h2><p>Crie uma pasta com index.html, style.css e app.js. Copie o HTML de apoio para o body do documento e o JavaScript para app.js. Carregue-o com &lt;script src=&quot;app.js&quot; defer&gt;&lt;/script&gt; no HTML; mantenha a apresentação no arquivo CSS.</p><p>Sirva a pasta com um servidor HTTP local da sua ferramenta de desenvolvimento. O método crypto.randomUUID() está disponível em contextos seguros (HTTPS e localhost) nos navegadores atuais. Use esse contexto para testar o projeto completo.</p><p>Teste o fluxo com mouse e teclado. Recarregue a página para conferir a persistência; salve dois títulos iguais e exclua apenas um; tente cadastrar somente espaços. Abra as ferramentas do navegador para investigar erros e inspecionar o armazenamento.</p></section>
+<div class="advice-grid" id="cuidados"><section class="advice mistakes"><h2><span aria-hidden="true">!</span> Erros comuns</h2><ul><li>Manter o estado só no HTML e perder a coerência depois de várias interações.</li><li>Usar o título como identificador único, impedindo lidar corretamente com títulos repetidos.</li><li>Interromper a aplicação inteira quando salvar os dados falha.</li></ul></section><section class="advice good-practices"><h2><span aria-hidden="true">✓</span> Boas práticas</h2><ul><li>Separe dados, renderização e persistência em funções pequenas.</li><li>Use textContent para títulos e botões acessíveis por teclado.</li><li>Teste entradas vazias, dados salvos inválidos e armazenamento bloqueado.</li></ul></section></div>
+<section class="lesson-section exercises" id="exercicios"><div class="eyebrow">AGORA É COM VOCÊ</div><h2>Transforme leitura em prática<span>.</span></h2><p>Tente resolver antes de abrir a resposta. Há mais de uma maneira de chegar ao resultado.</p><div class="exercise"><div class="exercise-heading"><span>01</span><h3>Adicione um filtro &quot;Todas / Pendentes / Concluídas&quot;. Comece escrevendo uma função que devolve a lista visível.</h3></div><details class="hint"><summary>Preciso de uma dica</summary><p>Não altere o estado original; retorne uma lista filtrada conforme o modo.</p></details><details class="solution"><summary>Conferir uma solução possível <span aria-hidden="true">+</span></summary><div class="code-example"><div class="code-toolbar"><span><i aria-hidden="true"></i> Uma solução possível</span><div><span class="language-label">JavaScript</span><button class="copy-button" type="button" aria-label="Copiar código JavaScript">Copiar</button></div></div><pre tabindex="0" aria-label="Código JavaScript"><code class="lesson-code">function filtrarAssuntos(assuntos, modo) {
+  if (modo === &quot;pendentes&quot;) {
+    return assuntos.filter((item) =&gt; !item.concluida);
+  }
+  if (modo === &quot;concluidas&quot;) {
+    return assuntos.filter((item) =&gt; item.concluida);
+  }
+  return assuntos;
+}
+const lista = [{ titulo: &quot;DOM&quot;, concluida: false }];
+console.log(filtrarAssuntos(lista, &quot;pendentes&quot;));</code></pre><div class="code-actions"><span>Veja o resultado no console de saída</span><button class="run-button" type="button"><span aria-hidden="true">▷</span> Executar</button></div><div class="example-output" hidden><div class="output-header"><span>DEMONSTRAÇÃO ISOLADA</span><button class="clear-output" type="button">Fechar saída</button></div><div class="frame-container"></div></div></div></details></div><div class="exercise"><div class="exercise-heading"><span>02</span><h3>Crie uma função que calcule o percentual de conclusão. Uma lista vazia deve retornar 0.</h3></div><details class="hint"><summary>Preciso de uma dica</summary><p>Conte as concluídas, divida pelo total e multiplique por 100.</p></details><details class="solution"><summary>Conferir uma solução possível <span aria-hidden="true">+</span></summary><div class="code-example"><div class="code-toolbar"><span><i aria-hidden="true"></i> Uma solução possível</span><div><span class="language-label">JavaScript</span><button class="copy-button" type="button" aria-label="Copiar código JavaScript">Copiar</button></div></div><pre tabindex="0" aria-label="Código JavaScript"><code class="lesson-code">function calcularProgresso(assuntos) {
+  if (assuntos.length === 0) {
+    return 0;
+  }
+  const concluidas = assuntos.filter((item) =&gt; item.concluida).length;
+  return Math.round((concluidas / assuntos.length) * 100);
+}
+console.log(calcularProgresso([])); // 0
+console.log(calcularProgresso([
+  { concluida: true }, { concluida: false }
+])); // 50</code></pre><div class="code-actions"><span>Veja o resultado no console de saída</span><button class="run-button" type="button"><span aria-hidden="true">▷</span> Executar</button></div><div class="example-output" hidden><div class="output-header"><span>DEMONSTRAÇÃO ISOLADA</span><button class="clear-output" type="button">Fechar saída</button></div><div class="frame-container"></div></div></div></details></div></section>
+<section class="lesson-summary" id="resumo"><div class="eyebrow">GUARDE ESTAS IDEIAS</div><h2>Em poucas palavras<span>.</span></h2><ul><li>Um projeto integra os fundamentos em um fluxo completo de entrada, estado e saída.</li><li>Dados validados e funções pequenas tornam a aplicação mais previsível.</li><li>Você já tem uma base para criar e ampliar pequenos projetos web. Continue praticando!</li></ul></section>
+<section class="completion-panel"><div><span class="eyebrow">MAIS UM PASSO NA SUA JORNADA</span><h2>Seu primeiro projeto é só o começo.</h2><p>Terminou a leitura e os exercícios? Registre sua conquista.</p></div><button class="button primary complete-button" type="button" data-complete="16" aria-pressed="false"><span aria-hidden="true">✓</span> Marcar como concluído</button></section>
+<nav class="lesson-pagination" aria-label="Navegação entre módulos"><a href="./15.html"><small>← MÓDULO ANTERIOR</small><strong>JavaScript assíncrono</strong></a><a class="next-lesson" href="../index.html#trilha"><small>SUA JORNADA CONTINUA ↗</small><strong>Revisitar a trilha</strong></a></nav></article>
+<aside class="lesson-toc" aria-label="Nesta página"><span class="eyebrow">NESTA PÁGINA</span><nav><a href="#objetivos">Objetivos</a><a href="#parte-1">Planeje antes de escrever</a><a href="#parte-2">Leve o projeto para o seu computador</a><a href="#cuidados">Erros e boas práticas</a><a href="#exercicios">Exercícios</a><a href="#resumo">Resumo</a></nav><p>Não tenha pressa.<br>Experimente cada ideia.</p></aside></div><footer class="site-footer"><span><strong>JavaScript em prática.</strong> Aprender é construir.</span><span>HTML + CSS + JavaScript puro <span aria-hidden="true">↗</span></span></footer></main></div>
+<div class="toast" role="status" aria-live="polite" hidden></div></body></html>
