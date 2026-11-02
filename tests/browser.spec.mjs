@@ -7,7 +7,7 @@ test("sumário, busca sem acentos, filtros, progresso e retomada", async ({
   await page.goto("/");
   await expect(page.locator("[data-card]:visible")).toHaveCount(16);
   await expect(page.locator("iframe")).toHaveCount(0);
-  await page.locator("#module-search").fill("funcoes");
+  await page.locator("#module-search").fill("funcoes e escopo");
   await expect(page.locator("[data-card]:visible")).toHaveCount(1);
   await page.locator("#module-search").fill("xxxxxx");
   await expect(page.locator(".no-results")).toBeVisible();
@@ -80,7 +80,14 @@ test("todos os exemplos e soluções rodam isoladamente, sem erros inesperados",
       tested++;
     }
   }
-  expect(tested).toBeGreaterThanOrEqual(62);
+  const expected = modules.reduce(
+    (total, module) =>
+      total +
+      module.sections.filter((section) => section.code).length +
+      module.exercises.length,
+    0,
+  );
+  expect(tested).toBe(expected);
   expect(parentErrors).toEqual([]);
 });
 
@@ -248,4 +255,203 @@ test("a demonstração assíncrona trata rejeição e finaliza a operação", as
   const output = page.frameLocator("iframe").locator("#console-output");
   await expect(output).toContainText("Não foi possível carregar o perfil.");
   await expect(output).toContainText("Consulta encerrada.");
+});
+
+// Resolve exemplos editoriais pelo título, sem depender de posições fixas após ampliações.
+async function abrirSecao(page, numero, titulo) {
+  const index = modules[numero - 1].sections.findIndex(
+    (section) => section.title === titulo,
+  );
+  expect(index, `Seção existente: ${titulo}`).toBeGreaterThanOrEqual(0);
+  const codeIndex = modules[numero - 1].sections
+    .slice(0, index)
+    .filter((section) => section.code).length;
+  await page.goto(`/modulos/${String(numero).padStart(2, "0")}.html`);
+  const example = page.locator(".code-example").nth(codeIndex);
+  await example.locator(".run-button").click();
+  return example.frameLocator("iframe");
+}
+
+test("DOM ampliado: coleções, atributos, estilos, navegação, movimento e templates", async ({
+  page,
+}) => {
+  let frame = await abrirSecao(
+    page,
+    11,
+    "Seletores específicos e coleções estáticas ou vivas",
+  );
+  await expect(frame.locator("#painel li")).toHaveCount(3);
+  await expect(frame.locator("#console-output pre").nth(0)).toHaveText("2");
+  await expect(frame.locator("#console-output pre").nth(1)).toHaveText("3");
+  frame = await abrirSecao(page, 11, "Atributos, propriedades e data-*");
+  await expect(frame.locator("#acao")).toBeEnabled();
+  await expect(frame.locator("#acao")).toHaveAttribute(
+    "aria-label",
+    "Abrir detalhes do módulo",
+  );
+  await expect(frame.locator("#acao")).not.toHaveAttribute("title");
+  await expect(frame.locator("#console-output")).toContainText("12");
+  frame = await abrirSecao(page, 11, "Classes, estilos, visibilidade e foco");
+  await expect(frame.locator("#mensagem")).toBeVisible();
+  await expect(frame.locator("#mensagem")).toHaveClass("destaque");
+  await expect(frame.locator("#mensagem")).toHaveCSS(
+    "border-left-width",
+    "4px",
+  );
+  frame = await abrirSecao(
+    page,
+    11,
+    "Navegação: pais, filhos, irmãos e ancestrais",
+  );
+  await expect(frame.locator("#console-output pre")).toHaveText([
+    "true",
+    "true",
+    "ARTICLE",
+    "DOM",
+    "DOM",
+    "2",
+  ]);
+  frame = await abrirSecao(
+    page,
+    11,
+    "Inserir, mover, substituir e remover nós",
+  );
+  await expect(frame.locator("#etapas li")).toHaveText([
+    "Revisar",
+    "Construir",
+    "Compartilhar",
+  ]);
+  frame = await abrirSecao(page, 11, "Templates, clonagem e DocumentFragment");
+  await expect(frame.locator("#cartoes strong")).toHaveText([
+    "Atributos",
+    "Árvore",
+    "Templates",
+  ]);
+  await expect(frame.locator("#console-output")).toContainText(
+    "Fragmento ficou vazio: true",
+  );
+});
+
+test("delegação trata descendentes e itens futuros; abort remove listeners", async ({
+  page,
+}) => {
+  let frame = await abrirSecao(
+    page,
+    12,
+    "Propagação e delegação em listas dinâmicas",
+  );
+  await expect(frame.locator("#tarefas li")).toHaveCount(2);
+  await frame.locator("#tarefas button span").click();
+  await expect(frame.locator("#tarefas li")).toHaveCount(1);
+  await frame.locator("#tarefas button").click();
+  await expect(frame.locator("#tarefas li")).toHaveCount(0);
+  frame = await abrirSecao(
+    page,
+    12,
+    "Duração dos listeners: once, remoção e AbortController",
+  );
+  await frame.locator("#teste").click();
+  await expect(frame.locator("#console-output pre")).toHaveCount(2);
+  await frame.locator("#parar").click();
+  await frame.locator("#teste").click();
+  await expect(frame.locator("#console-output pre")).toHaveCount(3);
+});
+
+test("formulários ampliados: FormData repetido e validade entre campos", async ({
+  page,
+}) => {
+  let frame = await abrirSecao(page, 13, "FormData, name e valores repetidos");
+  await frame.locator("#aluno").fill("Lia");
+  await frame.locator('input[value="Eventos"]').check();
+  await frame.locator("#turno").selectOption("noite");
+  await frame.getByRole("button", { name: "Ver dados" }).click();
+  await expect(frame.locator("#console-output")).toContainText("Lia");
+  await expect(frame.locator("#console-output")).toContainText('"DOM"');
+  await expect(frame.locator("#console-output")).toContainText('"Eventos"');
+  await expect(frame.locator("#console-output")).toContainText("noite");
+  frame = await abrirSecao(page, 13, "Validação cruzada e setCustomValidity");
+  await frame.locator("#senha").fill("123456");
+  await frame.locator("#confirmar").fill("654321");
+  await expect(frame.locator("#confirmar")).toHaveAttribute(
+    "aria-invalid",
+    "true",
+  );
+  await frame.getByRole("button", { name: "Conferir" }).click();
+  await expect(frame.locator("#retorno-senha")).toBeEmpty();
+  await frame.locator("#confirmar").fill("123456");
+  await expect(frame.locator("#confirmar")).toHaveAttribute(
+    "aria-invalid",
+    "false",
+  );
+  await frame.getByRole("button", { name: "Conferir" }).click();
+  await expect(frame.locator("#retorno-senha")).toContainText(
+    "nenhum dado foi enviado",
+  );
+});
+
+test("assíncrono ampliado: ordem, HTTP, falhas parciais e cancelamento", async ({
+  page,
+}) => {
+  let frame = await abrirSecao(
+    page,
+    15,
+    "Ordem de execução: pilha, microtarefas e temporizadores",
+  );
+  await expect(frame.locator("#console-output pre")).toHaveText([
+    "1. início",
+    "2. fim do código síncrono",
+    "3. microtarefa",
+    "4. temporizador",
+  ]);
+  frame = await abrirSecao(
+    page,
+    15,
+    "Sequência, concorrência e resultados parciais",
+  );
+  await expect(frame.locator("#console-output")).toContainText("fulfilled");
+  await expect(frame.locator("#console-output")).toContainText("rejected");
+  frame = await abrirSecao(page, 15, "Respostas HTTP e leitura de JSON");
+  await expect(frame.locator("#console-output")).toContainText("Promises");
+  await expect(frame.locator("#console-output")).toContainText(
+    "Erro tratado: Falha HTTP: 503",
+  );
+  frame = await abrirSecao(
+    page,
+    15,
+    "Cancelamento cooperativo e estado da interface",
+  );
+  await expect(frame.locator("#console-output")).toContainText(
+    "Espera cancelada com segurança.",
+  );
+  await expect(frame.locator("#console-output")).toContainText(
+    "Carregamento encerrado.",
+  );
+});
+
+test("evolução do projeto filtra a visão sem apagar dados e restaura foco", async ({
+  page,
+}) => {
+  const frame = await abrirSecao(
+    page,
+    16,
+    "Filtro e busca são uma visão, não o banco de dados",
+  );
+  await expect(frame.locator("#lista-visivel li")).toHaveCount(3);
+  await frame.locator("#filtro").selectOption("pendentes");
+  await expect(frame.locator("#lista-visivel li")).toHaveCount(2);
+  // The selected pending item disappears immediately; click rather than re-check a detached locator.
+  await frame.locator("#lista-visivel input").first().click();
+  await expect(frame.locator("#lista-visivel li")).toHaveCount(1);
+  await expect(frame.locator("#filtro")).toBeFocused();
+  await frame.locator("#busca-projeto").fill("json");
+  await expect(frame.locator("#lista-visivel li")).toContainText("JSON");
+  await frame.locator("#filtro").selectOption("concluidas");
+  await expect(frame.locator("#lista-visivel li")).toHaveCount(0);
+  await expect(frame.locator("#total-visivel")).toContainText("Nenhum assunto");
+  await frame.locator("#busca-projeto").fill("");
+  await frame.locator("#filtro").selectOption("todas");
+  await expect(frame.locator("#lista-visivel li")).toHaveCount(3);
+  await expect(frame.locator("#total-visivel")).toHaveText(
+    "Exibindo 3 de 3 assuntos.",
+  );
 });

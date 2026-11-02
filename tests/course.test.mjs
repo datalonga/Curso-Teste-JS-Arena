@@ -24,11 +24,16 @@ test("16 módulos completos com progressão e exemplos sintaticamente válidos",
     assert.ok(m.sections.some((s) => s.code));
     for (const section of m.sections) {
       assert.ok(section.text.length >= 2);
-      if (section.code) new vm.Script(section.code);
+      if (section.code)
+        new vm.Script(section.code, {
+          filename: `modulo-${i + 1}-${section.title}.js`,
+        });
     }
     for (const exercise of m.exercises) {
       assert.ok(exercise.prompt && exercise.hint && exercise.solution);
-      new vm.Script(exercise.solution);
+      new vm.Script(exercise.solution, {
+        filename: `modulo-${i + 1}-exercicio.js`,
+      });
     }
   }
 });
@@ -73,5 +78,59 @@ test("páginas são independentes, contêm o conteúdo e têm links locais váli
     for (const section of module.sections) {
       if (section.code) assert.ok(html.includes(escapeHTML(section.code)));
     }
+  }
+});
+
+test("todos os módulos foram ampliados, incluindo objetivos, exercícios e revisão", () => {
+  for (const [i, module] of modules.entries()) {
+    assert.ok(
+      module.sections.length >= 5,
+      `Módulo ${i + 1}: pelo menos 5 seções`,
+    );
+    assert.ok(
+      module.exercises.length >= 4,
+      `Módulo ${i + 1}: pelo menos 4 exercícios`,
+    );
+    assert.ok(
+      module.objectives.length >= 5,
+      `Módulo ${i + 1}: objetivos ampliados`,
+    );
+    assert.ok(module.mistakes.length >= 4);
+    assert.ok(module.practices.length >= 4);
+    assert.ok(module.summary.length >= 6);
+    assert.equal(
+      new Set(module.sections.map((section) => section.title)).size,
+      module.sections.length,
+    );
+  }
+  assert.equal(modules[10].sections.length, 8);
+  assert.equal(modules[10].exercises.length, 6);
+  assert.equal(modules[15].exercises.length, 6);
+});
+
+test("DOM cobre operações além de selecionar e criar, sem execução automática", () => {
+  const code = modules[10].sections
+    .map((section) => section.code || "")
+    .join("\n");
+  for (const api of [
+    "getElementById",
+    "getElementsByClassName",
+    "Array.from",
+    "dataset",
+    "setAttribute",
+    "removeAttribute",
+    "getComputedStyle",
+    "getBoundingClientRect",
+    "closest",
+    "matches",
+    "contains",
+    "prepend",
+    "after",
+    "replaceWith",
+    "remove",
+    "cloneNode",
+    "createDocumentFragment",
+  ]) {
+    assert.ok(code.includes(api), `DOM: exemplo de ${api}`);
   }
 });

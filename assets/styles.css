@@ -969,6 +969,10 @@ progress::-moz-progress-bar {
   min-width: 0;
 }
 .lesson-toc {
+  max-height: calc(100dvh - 135px);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  padding-right: 5px;
   position: sticky;
   top: 111px;
   align-self: start;
