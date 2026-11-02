@@ -2243,3 +2243,605 @@ progress::-moz-progress-bar {
     animation: none !important;
   }
 }
+
+/* Projeto acompanhado: o mesmo documento evolui junto com os módulos. */
+.project-sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 11px 10px;
+  margin: 0 7px 12px;
+  background: #e9ede2;
+  border: 1px solid #dce3d3;
+  border-radius: 5px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #4f6954;
+  flex-shrink: 0;
+}
+.project-sidebar-link:hover {
+  background: #e0e8d6;
+}
+.project-sidebar-link > span {
+  font-size: 17px;
+}
+.project-home-link {
+  padding: 28px;
+  background: #edeedf;
+  border: 1px solid #dfe3d0;
+  border-radius: 9px;
+  margin: -12px 0 40px;
+}
+.project-home-link h2 {
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: -0.6px;
+  margin: 10px 0;
+}
+.project-home-link p {
+  font-size: 12px;
+  color: #62715d;
+  max-width: 690px;
+}
+.project-home-link > a {
+  font-size: 12px;
+  font-weight: 700;
+  color: #49604c;
+}
+.project-module-jump {
+  display: block;
+  padding: 15px 18px;
+  margin-top: 18px;
+  background: #fff;
+  border: 1px solid #e4d8c2;
+  border-radius: 6px;
+  color: #87522d;
+  font-size: 12px;
+  line-height: 1.8;
+}
+.project-module-jump > span {
+  float: right;
+}
+.project-module-jump:hover {
+  background: #faf3e7;
+}
+.progressive-project {
+  scroll-margin-top: 105px;
+  border: 1px solid #dce1d0;
+  border-radius: 10px;
+  padding: 27px;
+  background: #f4f5ed;
+  margin: 38px 0 42px;
+  min-width: 0;
+}
+.project-heading {
+  position: relative;
+}
+.project-heading > .eyebrow {
+  font-size: 8px;
+  padding-right: 100px;
+  color: #667754;
+}
+.project-step {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font:
+    9px Consolas,
+    monospace;
+  color: #94602d;
+}
+.project-heading h2 {
+  font-size: 27px;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.7px;
+  margin: 14px 0;
+}
+.project-heading h2 > span {
+  color: var(--accent);
+}
+.project-heading p {
+  font-size: 12px;
+  color: #5f705f;
+  line-height: 1.9;
+  margin-bottom: 21px;
+}
+.project-evolution {
+  display: grid;
+  grid-template-columns: 1fr 24px 1fr;
+  gap: 10px;
+  align-items: start;
+  background: #fff;
+  border: 1px solid #e2e5da;
+  border-radius: 6px;
+  padding: 17px;
+  margin-bottom: 23px;
+}
+.project-evolution > div > span {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  color: #7c886d;
+}
+.project-evolution p {
+  font-size: 11px;
+  line-height: 1.8;
+  color: #5c6d60;
+  margin: 8px 0 0;
+}
+.evolution-arrow {
+  align-self: center;
+  font-size: 19px;
+  color: #899b75;
+}
+.project-explanation {
+  font-size: 13px;
+  color: #5b6b60;
+  line-height: 1.9;
+}
+.progressive-project > h3 {
+  font-size: 13px;
+  font-weight: 700;
+  margin: 22px 0 13px;
+}
+.project-changes {
+  padding-left: 18px;
+  font-size: 12px;
+  line-height: 1.9;
+  color: #5b6b60;
+}
+.project-changes li + li {
+  margin-top: 8px;
+}
+.project-focus {
+  font:
+    11px/1.9 Consolas,
+    monospace;
+  overflow: auto;
+  padding: 19px;
+  background: #203640;
+  color: #dfe9df;
+  border-radius: 6px;
+  max-height: 330px;
+  tab-size: 2;
+}
+.project-focus code {
+  font: inherit;
+  white-space: pre;
+}
+.project-observe {
+  border-left: 3px solid #b8c79d;
+  padding-left: 15px;
+  margin: 20px 0;
+}
+.project-observe > strong {
+  font-size: 12px;
+  color: #536c4e;
+}
+.project-observe p {
+  font-size: 12px;
+  color: #697562;
+  line-height: 1.9;
+  margin: 7px 0 0;
+}
+.project-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 25px 0 12px;
+}
+.project-run {
+  font-size: 11px;
+  gap: 12px;
+  padding: 12px 15px;
+}
+.project-compare {
+  background: #fff;
+  border: 1px solid #cbd4be;
+  border-radius: 5px;
+  font-size: 11px;
+  padding: 12px;
+  color: #456044;
+}
+.project-controls > a {
+  font-size: 10px;
+  color: #61715c;
+  text-decoration: underline;
+  line-height: 1.9;
+}
+.project-preview-note {
+  font-size: 10px;
+  line-height: 1.9;
+  color: #6b7864;
+  margin: 0 0 22px;
+}
+.project-preview {
+  border: 1px solid #cfd6c3;
+  border-radius: 7px;
+  overflow: hidden;
+  margin: 20px 0;
+  background: #fff;
+}
+.project-preview-toolbar {
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background: #e9efdf;
+}
+.project-preview-status {
+  font-size: 10px;
+  color: #536749;
+  line-height: 1.8;
+}
+.project-close {
+  font-size: 10px;
+  background: none;
+  border: 0;
+  text-decoration: underline;
+  white-space: nowrap;
+}
+.project-preview-frames {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+.project-preview-frames.is-comparing {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+.project-preview-frames figure {
+  margin: 0;
+  min-width: 0;
+}
+.project-preview-frames figure + figure {
+  border-left: 1px solid #dce1d3;
+}
+.project-preview-frames figcaption {
+  padding: 10px 14px;
+  font-size: 10px;
+  color: #5c7154;
+  border-bottom: 1px solid #e0e6d7;
+  background: #f7f9f3;
+  font-weight: 700;
+}
+.project-preview iframe {
+  display: block;
+  border: 0;
+  width: 100%;
+  height: 600px;
+  background: #fff;
+}
+.project-differences,
+.project-files {
+  border-top: 1px solid #d9dfcc;
+  padding: 14px 0;
+}
+.project-differences > summary,
+.project-files > summary {
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.8;
+  color: #435b41;
+}
+.project-differences > summary > span,
+.project-files > summary > span {
+  float: right;
+}
+.project-differences > p,
+.project-files > p {
+  font-size: 11px;
+  color: #65735d;
+  margin: 15px 0;
+  line-height: 1.9;
+}
+.project-differences h4 {
+  font:
+    11px Consolas,
+    monospace;
+  margin: 20px 0 9px;
+  color: #51664a;
+}
+.project-diff {
+  font:
+    10px/1.8 Consolas,
+    monospace;
+  max-height: 380px;
+  overflow: auto;
+  background: #fff;
+  padding: 12px;
+  border: 1px solid #dfe4d5;
+  border-radius: 5px;
+}
+.project-diff code {
+  font: inherit;
+}
+.project-diff code > span {
+  display: block;
+  white-space: pre;
+}
+.diff-added {
+  background: #e8f1e0;
+  color: #36582e;
+}
+.diff-removed {
+  background: #f9e9de;
+  color: #864633;
+}
+.diff-same {
+  color: #768171;
+}
+.diff-gap {
+  color: #839177;
+}
+.project-unchanged {
+  font-size: 10px;
+  color: #7a856d;
+}
+.project-file {
+  border: 1px solid #dfe4d5;
+  border-radius: 6px;
+  background: #fff;
+  margin: 11px 0;
+  overflow: hidden;
+}
+.project-file > summary {
+  cursor: pointer;
+  padding: 13px 14px;
+  font:
+    11px Consolas,
+    monospace;
+  color: #526b4c;
+}
+.project-file > summary > span {
+  float: right;
+  font:
+    8px Arial,
+    sans-serif;
+  letter-spacing: 1px;
+  color: #88957c;
+}
+.project-file-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 14px;
+  align-items: center;
+  background: #f6f8f0;
+  border-block: 1px solid #e5e9da;
+}
+.project-file-actions button {
+  border: 1px solid #d0dac3;
+  border-radius: 4px;
+  padding: 6px 9px;
+  font-size: 10px;
+  background: #fff;
+  color: #536b49;
+}
+.project-file-actions > a {
+  font-size: 10px;
+  text-decoration: underline;
+  color: #627755;
+}
+.project-file pre {
+  background: #203640;
+  color: #dfe9df;
+  margin: 0;
+  padding: 18px;
+  overflow: auto;
+  max-height: 480px;
+  font:
+    10px/1.9 Consolas,
+    monospace;
+  tab-size: 2;
+}
+.project-file pre code {
+  font: inherit;
+  white-space: pre;
+}
+.project-challenge {
+  border: 1px dashed #bdc9a9;
+  border-radius: 6px;
+  background: #eef2e4;
+  padding: 18px;
+  margin-top: 18px;
+}
+.project-challenge > strong {
+  font-size: 12px;
+}
+.project-challenge p {
+  font-size: 12px;
+  line-height: 1.9;
+  color: #627353;
+  margin: 10px 0;
+}
+.project-challenge > p:nth-of-type(2) {
+  font-size: 10px;
+  color: #7a856e;
+}
+.project-challenge summary {
+  font-size: 11px;
+  cursor: pointer;
+  color: #4e673e;
+  line-height: 1.8;
+}
+.project-pagination {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  border-top: 1px solid #d7dfc9;
+  margin-top: 24px;
+  padding-top: 18px;
+  font-size: 10px;
+  line-height: 1.9;
+  color: #586e4e;
+}
+.project-pagination > a:hover {
+  text-decoration: underline;
+}
+.project-pagination > span {
+  color: #89947d;
+}
+.project-roadmap-intro {
+  border: 1px solid #dfe4d2;
+  border-radius: 8px;
+  padding: 28px;
+  background: #eef1e6;
+  margin-bottom: 25px;
+}
+.project-roadmap-intro h2 {
+  font-size: 22px;
+  font-weight: 500;
+}
+.project-roadmap-intro li,
+.project-roadmap-intro p {
+  font-size: 13px;
+  color: #5d7058;
+  line-height: 1.9;
+}
+.project-roadmap-intro ol {
+  padding-left: 20px;
+}
+.project-roadmap-intro .button {
+  margin-top: 7px;
+}
+.project-roadmap {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 40px;
+}
+.project-roadmap-card {
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: white;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.project-roadmap-card h2 {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.5px;
+  margin: 12px 0;
+}
+.project-roadmap-card p {
+  font-size: 12px;
+  line-height: 1.9;
+  color: #697665;
+  flex: 1;
+}
+.project-roadmap-card > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  font-size: 10px;
+  line-height: 1.8;
+  border-top: 1px solid var(--line);
+  padding-top: 15px;
+}
+.project-roadmap-card a:hover {
+  text-decoration: underline;
+}
+@media (max-width: 760px) {
+  .progressive-project {
+    scroll-margin-top: 90px;
+    padding: 23px;
+  }
+  .project-preview-frames.is-comparing {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .project-preview-frames figure + figure {
+    border-left: 0;
+    border-top: 1px solid #dce1d3;
+  }
+  .project-roadmap {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .project-preview iframe {
+    height: 560px;
+  }
+  .project-home-link h2 {
+    font-size: 22px;
+  }
+}
+@media (max-width: 540px) {
+  .progressive-project {
+    padding: 20px 15px;
+  }
+  .project-heading h2 {
+    font-size: 24px;
+  }
+  .project-heading > .eyebrow {
+    font-size: 7px;
+    letter-spacing: 0.7px;
+    padding-right: 75px;
+  }
+  .project-step {
+    font-size: 8px;
+  }
+  .project-evolution {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 16px;
+  }
+  .evolution-arrow {
+    transform: rotate(90deg);
+    justify-self: start;
+  }
+  .project-heading p,
+  .project-explanation {
+    font-size: 12px;
+  }
+  .project-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .project-controls > a {
+    text-align: center;
+    font-size: 11px;
+  }
+  .project-preview-toolbar {
+    align-items: flex-start;
+  }
+  .project-focus {
+    padding: 14px;
+    font-size: 10px;
+  }
+  .project-changes {
+    font-size: 11px;
+  }
+  .project-pagination {
+    font-size: 9px;
+  }
+  .project-file-actions {
+    padding: 9px;
+    gap: 7px;
+  }
+  .project-file-actions button,
+  .project-file-actions > a {
+    font-size: 9px;
+  }
+  .project-home-link {
+    padding: 22px;
+  }
+  .project-home-link h2 {
+    font-size: 21px;
+    line-height: 1.4;
+  }
+  .project-home-link .eyebrow {
+    font-size: 7px;
+  }
+  .project-roadmap-intro {
+    padding: 22px;
+  }
+  .project-roadmap-intro p,
+  .project-roadmap-intro li {
+    font-size: 12px;
+  }
+}
