@@ -12,14 +12,14 @@ const baseModules = [
     objectives: [
       "Entender o que um programa faz.",
       "Distinguir o navegador do ambiente Node.js.",
-      "Executar suas primeiras instruções no console.",
+      "Executar suas primeiras instruções no `console`.",
     ],
     sections: [
       {
         title: "Uma instrução de cada vez",
         text: [
           "Pense em uma receita: você recebe ingredientes, segue etapas e obtém um resultado. Um programa também trabalha com entradas, processamento e saídas. A ordem das instruções importa.",
-          "No exemplo, o programa calcula o preço de três cadernos. console.log() exibe uma informação no console; não é um comando para escrever diretamente na página. Clique em Executar para ver a saída.",
+          "No exemplo, o programa calcula o preço de três cadernos. `console.log()` exibe uma informação no `console`; não é um comando para escrever diretamente na página. Clique em Executar para ver a saída.",
         ],
         code: `const preco = 12;
 const quantidade = 3;
@@ -30,7 +30,7 @@ console.log("Total: R$", total);`,
         title: "Onde o código roda?",
         text: [
           "Nos navegadores, JavaScript pode acessar a página por meio do DOM e responder a cliques. Para experimentar fora deste curso, abra as ferramentas de desenvolvimento (F12 ou o menu Inspecionar) e procure a aba Console.",
-          "JavaScript também roda fora do navegador, por exemplo no Node.js, muito usado em servidores. A linguagem é a mesma, mas os recursos do ambiente mudam: document pertence ao ambiente do navegador e não está disponível por padrão no Node.js.",
+          "JavaScript também roda fora do navegador, por exemplo no Node.js, muito usado em servidores. A linguagem é a mesma, mas os recursos do ambiente mudam: `document` pertence ao ambiente do navegador e não está disponível por padrão no Node.js.",
           "HTML descreve a estrutura; CSS cuida da apresentação; JavaScript implementa o comportamento. Aqui, o botão Executar cria uma página de teste isolada. Nada nos blocos de código roda apenas por você abrir o módulo.",
         ],
         code: `console.log("Olá, JavaScript!");
@@ -38,7 +38,7 @@ console.log("Esta mensagem é a saída de um programa.");`,
       },
     ],
     mistakes: [
-      "Esperar que console.log() desenhe um texto na página.",
+      "Esperar que `console.log()` desenhe um texto na página.",
       "Confundir JavaScript com Java: são linguagens diferentes.",
     ],
     practices: [
@@ -49,7 +49,7 @@ console.log("Esta mensagem é a saída de um programa.");`,
       {
         prompt:
           "Mostre seu nome e o que você deseja criar com JavaScript, em duas mensagens.",
-        hint: "Use duas chamadas de console.log() com textos entre aspas.",
+        hint: "Use duas chamadas de `console.log()` com textos entre aspas.",
         solution: `console.log("Meu nome é Ana.");
 console.log("Quero criar um organizador de estudos.");`,
       },
@@ -64,7 +64,7 @@ console.log(total); // 60`,
     summary: [
       "Um programa é uma sequência de instruções que processa dados.",
       "JavaScript funciona em diferentes ambientes, com recursos próprios de cada um.",
-      "O console é uma ferramenta para observar resultados e investigar erros.",
+      "O `console` é uma ferramenta para observar resultados e investigar erros.",
     ],
   },
   {
@@ -84,7 +84,7 @@ console.log(total); // 60`,
         title: "Escrevendo instruções legíveis",
         text: [
           "Uma instrução expressa uma ação. Neste curso, usamos ponto e vírgula no final das instruções. JavaScript pode inserir alguns automaticamente, mas escrever de forma consistente evita ambiguidades.",
-          "Textos precisam de delimitadores: aspas simples, duplas ou crases. JavaScript diferencia maiúsculas de minúsculas: console.log existe, mas Console.log não é o mesmo identificador.",
+          "Textos precisam de delimitadores: aspas simples, duplas ou crases. JavaScript diferencia maiúsculas de minúsculas: `console.log` existe, mas `Console.log` não é o mesmo identificador.",
         ],
         code: `console.log("Uma instrução");
 console.log('Outra instrução');
@@ -115,7 +115,7 @@ console.log(lugaresDisponiveis);`,
     ],
     exercises: [
       {
-        prompt: 'Corrija a instrução console.log("Estudando JavaScript);',
+        prompt: 'Corrija a instrução `console.log`("Estudando JavaScript);',
         hint: "O texto precisa de uma aspa de fechamento.",
         solution: `console.log("Estudando JavaScript");`,
       },
@@ -141,7 +141,7 @@ console.log(80 - 10);`,
     intro:
       "Variáveis dão nome aos dados de um programa. Escolher bons nomes e limitar onde eles existem deixa o código mais fácil de entender.",
     objectives: [
-      "Declarar valores com let e const.",
+      "Declarar valores com `let` e `const`.",
       "Entender a diferença entre atribuição e declaração.",
       "Reconhecer o escopo de bloco.",
     ],
@@ -149,8 +149,8 @@ console.log(80 - 10);`,
       {
         title: "Um nome para cada valor",
         text: [
-          "Use const quando não pretende reatribuir o valor. Use let quando o valor associado ao nome vai mudar. A declaração cria a variável; a atribuição, com =, associa um valor a ela.",
-          "Uma const deve receber valor na declaração. Ela impede reatribuição, mas não torna arrays e objetos imutáveis; veremos isso nos módulos seguintes.",
+          "Use `const` quando não pretende reatribuir o valor. Use `let` quando o valor associado ao nome vai mudar. A declaração cria a variável; a atribuição, com `=`, associa um valor a ela.",
+          "Uma `const` deve receber valor na declaração. Ela impede reatribuição, mas não torna arrays e objetos imutáveis; veremos isso nos módulos seguintes.",
         ],
         code: `const curso = "JavaScript";
 let aulasConcluidas = 0;
@@ -161,8 +161,8 @@ console.log(aulasConcluidas);`,
       {
         title: "O espaço em que um nome existe",
         text: [
-          "let e const têm escopo de bloco: uma variável declarada dentro de { } só pode ser acessada naquele bloco e em seus blocos internos. O código interno pode acessar nomes do escopo externo.",
-          "Declare antes de usar. A região anterior à declaração de let ou const no mesmo escopo é chamada de zona morta temporal; tentar acessar o valor ali causa ReferenceError.",
+          "`let` e `const` têm escopo de bloco: uma variável declarada dentro de { } só pode ser acessada naquele bloco e em seus blocos internos. O código interno pode acessar nomes do escopo externo.",
+          "Declare antes de usar. A região anterior à declaração de `let` ou `const` no mesmo escopo é chamada de zona morta temporal; tentar acessar o valor ali causa `ReferenceError`.",
         ],
         code: `const mensagem = "Estou no escopo externo";
 {
@@ -175,11 +175,11 @@ console.log(mensagem);`,
       },
     ],
     mistakes: [
-      "Tentar reatribuir uma const: const pontos = 1; pontos = 2; causa erro.",
-      "Declarar com let dentro de um bloco e tentar usar fora dele.",
+      "Tentar reatribuir uma `const`: `const` pontos = 1; pontos = 2; causa erro.",
+      "Declarar com `let` dentro de um bloco e tentar usar fora dele.",
     ],
     practices: [
-      "Prefira const e use let quando houver reatribuição.",
+      "Prefira `const` e use `let` quando houver reatribuição.",
       "Escolha nomes como precoTotal em vez de nomes vagos como x.",
     ],
     exercises: [
@@ -195,7 +195,7 @@ console.log(nome, pontos);`,
       {
         prompt:
           "Crie uma variável dentro de um bloco e mostre seu valor ainda dentro dele.",
-        hint: "Use chaves e mantenha console.log() entre elas.",
+        hint: "Use chaves e mantenha `console.log()` entre elas.",
         solution: `{
   const cidade = "Castelo do Piauí";
   console.log(cidade);
@@ -203,8 +203,8 @@ console.log(nome, pontos);`,
       },
     ],
     summary: [
-      "const impede reatribuição; let permite mudar o valor associado ao nome.",
-      "let e const respeitam o escopo de bloco.",
+      "`const` impede reatribuição; `let` permite mudar o valor associado ao nome.",
+      "`let` e `const` respeitam o escopo de bloco.",
       "Nomes claros e declarações próximas do uso facilitam a manutenção.",
     ],
   },
@@ -216,17 +216,17 @@ console.log(nome, pontos);`,
     intro:
       "O tipo de um valor influencia o resultado de uma operação. Aprenda a reconhecer os tipos mais comuns e a converter dados de maneira explícita.",
     objectives: [
-      "Identificar string, number, boolean, null e undefined.",
-      "Investigar valores com typeof.",
+      "Identificar `string`, `number`, `boolean`, `null` e `undefined`.",
+      "Investigar valores com `typeof`.",
       "Converter textos em números com atenção a entradas inválidas.",
     ],
     sections: [
       {
         title: "Que tipo de dado é esse?",
         text: [
-          "Strings representam textos, numbers representam números e booleans representam verdadeiro ou falso. undefined costuma indicar um valor ainda não definido; null é usado para indicar uma ausência de forma intencional.",
-          "Os tipos primitivos também incluem bigint e symbol, que não serão necessários nos nossos projetos. Arrays e objetos são valores do tipo objeto. A linguagem tem tipagem dinâmica: uma variável declarada com let pode receber valores de tipos diferentes.",
-          'typeof ajuda a inspecionar tipos. Há uma particularidade histórica: typeof null resulta em "object". Isso não significa que null seja um objeto.',
+          "Strings representam textos, numbers representam números e booleans representam verdadeiro ou falso. `undefined` costuma indicar um valor ainda não definido; `null` é usado para indicar uma ausência de forma intencional.",
+          "Os tipos primitivos também incluem `bigint` e `symbol`, que não serão necessários nos nossos projetos. Arrays e objetos são valores do tipo objeto. A linguagem tem tipagem dinâmica: uma variável declarada com `let` pode receber valores de tipos diferentes.",
+          '`typeof` ajuda a inspecionar tipos. Há uma particularidade histórica: `typeof` `null` resulta em "`object`". Isso não significa que `null` seja um objeto.',
         ],
         code: `console.log(typeof "Olá"); // string
 console.log(typeof 42); // number
@@ -238,8 +238,8 @@ console.log(typeof null); // object (particularidade histórica)`,
       {
         title: "Converta antes de calcular",
         text: [
-          "Valores lidos de campos de texto normalmente são strings. Number() converte um valor em número; String() converte em texto; Boolean() converte em booleano. Uma conversão numérica inválida produz NaN, que pode ser detectado com Number.isNaN().",
-          'Atenção: Number("") e Number("   ") retornam 0. Valide se a entrada está vazia antes da conversão. Boolean("false") resulta em true porque é uma string não vazia. Os valores falsy incluem false, 0, -0, 0n, "", null, undefined e NaN.',
+          "Valores lidos de campos de texto normalmente são strings. `Number()` converte um valor em número; `String()` converte em texto; `Boolean()` converte em booleano. Uma conversão numérica inválida produz `NaN`, que pode ser detectado com `Number.isNaN()`.",
+          'Atenção: `Number("")` e `Number("   ")` retornam 0. Valide se a entrada está vazia antes da conversão. `Boolean("false")` resulta em `true` porque é uma `string` não vazia. Os valores falsy incluem `false`, 0, -0, 0n, "", `null`, `undefined` e `NaN`.',
         ],
         code: `const entrada = "24";
 const idade = Number(entrada);
@@ -251,31 +251,31 @@ console.log(Boolean("false")); // true`,
       },
     ],
     mistakes: [
-      "Somar uma string numérica a um número e esperar sempre uma soma aritmética.",
-      "Usar valor === NaN para detectar NaN; essa comparação é sempre falsa.",
+      "Somar uma `string` numérica a um número e esperar sempre uma soma aritmética.",
+      "Usar valor `===` `NaN` para detectar `NaN`; essa comparação é sempre falsa.",
     ],
     practices: [
       "Converta entradas explicitamente antes de fazer contas.",
-      "Verifique strings vazias e use Number.isFinite() para aceitar apenas números finitos.",
+      "Verifique strings vazias e use `Number.isFinite()` para aceitar apenas números finitos.",
     ],
     exercises: [
       {
-        prompt: 'Converta "19.90" em número, some 5 e mostre o resultado.',
-        hint: "Use ponto como separador decimal na conversão com Number().",
+        prompt: 'Converta "19.90" em número, `some` 5 e mostre o resultado.',
+        hint: "Use ponto como separador decimal na conversão com `Number()`.",
         solution: `const preco = Number("19.90");
 console.log(preco + 5); // 24.9`,
       },
       {
-        prompt: 'Verifique se converter o texto "abc" gera NaN.',
-        hint: "Combine Number() e Number.isNaN().",
+        prompt: 'Verifique se converter o texto "abc" gera `NaN`.',
+        hint: "Combine `Number()` e `Number.isNaN()`.",
         solution: `const numero = Number("abc");
 console.log(Number.isNaN(numero)); // true`,
       },
     ],
     summary: [
-      "Valores têm tipos; variáveis com let podem receber tipos diferentes.",
+      "Valores têm tipos; variáveis com `let` podem receber tipos diferentes.",
       "Conversões explícitas evitam resultados inesperados.",
-      "NaN e entradas vazias precisam de verificação própria.",
+      "`NaN` e entradas vazias precisam de verificação própria.",
     ],
   },
   {
@@ -287,15 +287,15 @@ console.log(Number.isNaN(numero)); // true`,
       "Uma expressão produz um valor. Operadores permitem construir expressões para fazer contas, comparar dados e tomar decisões.",
     objectives: [
       "Usar operadores aritméticos e de comparação.",
-      "Combinar booleanos com &&, || e !.",
+      "Combinar booleanos com `&&`, `||` e !.",
       "Compreender precedência e interpolação de texto.",
     ],
     sections: [
       {
         title: "Do cálculo à comparação",
         text: [
-          "Os operadores +, -, *, / e ** fazem soma, subtração, multiplicação, divisão e potência. O operador % calcula o resto da divisão, útil para verificar se um número inteiro é par.",
-          "Compare com === (igualdade estrita) e !== (diferença estrita), que não convertem os tipos dos operandos. >, >=, < e <= comparam ordens. Não confunda =, que atribui, com ===, que compara.",
+          "Os operadores `+`, `-`, `*`, `/` e `**` fazem soma, subtração, multiplicação, divisão e potência. O operador `%` calcula o resto da divisão, útil para verificar se um número inteiro é par.",
+          "Compare com `===` (igualdade estrita) e `!==` (diferença estrita), que não convertem os tipos dos operandos. `>`, `>=`, `<` e `<=` comparam ordens. Não confunda `=`, que atribui, com `===`, que compara.",
           "Multiplicação e divisão têm precedência sobre soma e subtração. Use parênteses para deixar a intenção clara. Valores decimais usam ponto flutuante: algumas contas, como 0.1 + 0.2, não têm representação exata.",
         ],
         code: `console.log(2 + 3 * 4); // 14
@@ -308,7 +308,7 @@ console.log(\`Preço: R$ \${preco.toFixed(2)}\`);`,
       {
         title: "Condições que trabalham juntas",
         text: [
-          "Com valores booleanos, && exige que ambos sejam verdadeiros; || exige pelo menos um verdadeiro; ! inverte o booleano. && e || fazem curto-circuito: o segundo operando só é avaliado se necessário e o resultado pode ser um dos valores originais, não necessariamente um booleano.",
+          "Com valores booleanos, `&&` exige que ambos sejam verdadeiros; `||` exige pelo menos um verdadeiro; `!` inverte o booleano. `&&` e `||` fazem curto-circuito: o segundo operando só é avaliado se necessário e o resultado pode ser um dos valores originais, não necessariamente um booleano.",
           "Template literals usam crases e permitem inserir expressões com ${...}. Elas ajudam a montar mensagens sem várias concatenações.",
         ],
         code: `const idade = 20;
@@ -324,7 +324,7 @@ console.log(false || true); // true`,
       "Esquecer que + também concatena strings.",
     ],
     practices: [
-      "Prefira === e !== para comparações previsíveis.",
+      "Prefira `===` e `!==` para comparações previsíveis.",
       "Use parênteses em expressões com várias operações.",
     ],
     exercises: [
@@ -345,7 +345,7 @@ console.log(idade >= 16 && temAutorizacao); // true`,
     ],
     summary: [
       "Expressões combinam valores e operadores para produzir resultados.",
-      "=== compara sem converter tipos.",
+      "`===` compara sem converter tipos.",
       "Operadores lógicos combinam condições; parênteses esclarecem a ordem.",
     ],
   },
@@ -357,15 +357,15 @@ console.log(idade >= 16 && temAutorizacao); // true`,
     intro:
       "Programas precisam reagir a situações diferentes. Condicionais escolhem quais instruções executar de acordo com uma condição.",
     objectives: [
-      "Criar decisões com if e else.",
-      "Encadear condições com else if.",
-      "Escolher entre casos com switch.",
+      "Criar decisões com `if` e `else`.",
+      "Encadear condições com `else if`.",
+      "Escolher entre casos com `switch`.",
     ],
     sections: [
       {
         title: "Um caminho para cada situação",
         text: [
-          "if executa um bloco quando a condição é truthy. else oferece uma alternativa. Use else if quando houver mais de duas possibilidades. A primeira condição satisfeita define o bloco executado naquela cadeia.",
+          "`if` executa um bloco quando a condição é truthy. `else` oferece uma alternativa. Use `else if` quando houver mais de duas possibilidades. A primeira condição satisfeita define o bloco executado naquela cadeia.",
           "Ordene condições do caso mais específico para o mais geral. Na classificação abaixo, testar a nota 6 antes da nota 9 faria uma nota excelente cair na categoria errada.",
         ],
         code: `const nota = 9;
@@ -380,7 +380,7 @@ if (nota >= 9) {
       {
         title: "Comparando um valor com várias opções",
         text: [
-          "switch é útil quando um mesmo valor é comparado com vários casos. As comparações usam igualdade estrita. break encerra o switch e evita continuar pelos casos seguintes; default trata o valor que não correspondeu a nenhum caso.",
+          "`switch` é útil quando um mesmo valor é comparado com vários casos. As comparações usam igualdade estrita. `break` encerra o `switch` e evita continuar pelos casos seguintes; `default` trata o valor que não correspondeu a nenhum caso.",
           "Para uma escolha pequena que precisa produzir um valor, existe o operador condicional: condição ? valorSeVerdadeiro : valorSeFalso. Evite encadear muitas escolhas assim, pois a leitura fica difícil.",
         ],
         code: `const dia = "sábado";
@@ -397,7 +397,7 @@ console.log(mensagem);`,
       },
     ],
     mistakes: [
-      "Esquecer break sem querer em um switch.",
+      "Esquecer `break` sem querer em um `switch`.",
       "Usar uma condição geral antes de uma mais específica.",
     ],
     practices: [
@@ -408,7 +408,7 @@ console.log(mensagem);`,
       {
         prompt:
           'Mostre "Frete grátis" se o total for pelo menos 100; caso contrário, mostre "Frete: R$ 15".',
-        hint: "Use if com >= e uma alternativa else.",
+        hint: "Use `if` com >= e uma alternativa `else`.",
         solution: `const total = 80;
 if (total >= 100) {
   console.log("Frete grátis");
@@ -418,8 +418,8 @@ if (total >= 100) {
       },
       {
         prompt:
-          'Use switch para traduzir o estado "concluido" ou "pendente" em uma mensagem. Trate outros valores.',
-        hint: "Inclua default para estados desconhecidos.",
+          'Use `switch` para traduzir o estado "concluido" ou "pendente" em uma mensagem. Trate outros valores.',
+        hint: "Inclua `default` para estados desconhecidos.",
         solution: `const estado = "concluido";
 switch (estado) {
   case "concluido":
@@ -434,9 +434,9 @@ switch (estado) {
       },
     ],
     summary: [
-      "if e else selecionam blocos conforme uma condição.",
-      "else if permite testar alternativas em sequência.",
-      "switch compara um valor com casos e usa break para interromper a execução.",
+      "`if` e `else` selecionam blocos conforme uma condição.",
+      "`else if` permite testar alternativas em sequência.",
+      "`switch` compara um valor com casos e usa `break` para interromper a execução.",
     ],
   },
   {
@@ -447,16 +447,16 @@ switch (estado) {
     intro:
       "Laços evitam repetir instruções manualmente. Você define o que deve acontecer e quando a repetição deve terminar.",
     objectives: [
-      "Controlar repetições com for e while.",
-      "Percorrer valores com for...of.",
+      "Controlar repetições com `for` e `while`.",
+      "Percorrer valores com `for...of`.",
       "Evitar laços infinitos e erros de limite.",
     ],
     sections: [
       {
         title: "Contagem com começo, condição e passo",
         text: [
-          "for reúne três partes: inicialização, condição de continuação e atualização. A condição é verificada antes de cada volta. Se ela for falsa desde o início, o bloco não roda.",
-          "while repete enquanto sua condição for truthy. Garanta que algum estado mude para tornar a condição falsa. Um laço infinito pode travar a página; teste sempre com limites pequenos.",
+          "`for` reúne três partes: inicialização, condição de continuação e atualização. A condição é verificada antes de cada volta. Se ela for falsa desde o início, o bloco não roda.",
+          "`while` repete enquanto sua condição for truthy. Garanta que algum estado mude para tornar a condição falsa. Um laço infinito pode travar a página; teste sempre com limites pequenos.",
         ],
         code: `for (let numero = 1; numero <= 3; numero++) {
   console.log("Volta", numero);
@@ -471,8 +471,8 @@ while (saldo > 0) {
       {
         title: "Percorrendo uma coleção",
         text: [
-          "for...of percorre os valores de uma coleção iterável, como um array ou uma string. Quando só precisa dos valores, ele evita gerenciar índices manualmente.",
-          "break encerra o laço. continue pula o restante da volta atual e segue para a próxima. Use esses comandos com cuidado para manter o fluxo fácil de acompanhar.",
+          "`for...of` percorre os valores de uma coleção iterável, como um array ou uma `string`. Quando só precisa dos valores, ele evita gerenciar índices manualmente.",
+          "`break` encerra o laço. `continue` pula o restante da volta atual e segue para a próxima. Use esses comandos com cuidado para manter o fluxo fácil de acompanhar.",
         ],
         code: `const assuntos = ["variáveis", "condições", "laços"];
 for (const assunto of assuntos) {
@@ -488,24 +488,24 @@ for (let numero = 1; numero <= 5; numero++) {
       },
     ],
     mistakes: [
-      "Esquecer de atualizar a variável de controle em while.",
-      "Usar <= array.length ao percorrer índices: o último índice é length - 1.",
+      "Esquecer de atualizar a variável de controle em `while`.",
+      "Usar <= `array.length` ao percorrer índices: o último índice é `length` - 1.",
     ],
     practices: [
       "Defina uma condição de parada antes de escrever o laço.",
-      "Prefira for...of quando não precisar do índice.",
+      "Prefira `for...of` quando não precisar do índice.",
     ],
     exercises: [
       {
-        prompt: "Mostre os números pares de 2 até 10 usando for.",
-        hint: "Aumente o contador de dois em dois com += 2.",
+        prompt: "Mostre os números pares de 2 até 10 usando `for`.",
+        hint: "Aumente o contador de dois em dois com `+=` 2.",
         solution: `for (let numero = 2; numero <= 10; numero += 2) {
   console.log(numero);
 }`,
       },
       {
-        prompt: "Some os valores do array [10, 20, 30] com for...of.",
-        hint: "Crie um acumulador com let antes do laço.",
+        prompt: "Some os valores do array [10, 20, 30] com `for...of`.",
+        hint: "Crie um acumulador com `let` antes do laço.",
         solution: `let total = 0;
 for (const valor of [10, 20, 30]) {
   total += valor;
@@ -514,9 +514,9 @@ console.log(total); // 60`,
       },
     ],
     summary: [
-      "for é conveniente para repetições com contador.",
-      "while repete de acordo com uma condição.",
-      "for...of percorre valores; todo laço precisa de uma estratégia de término.",
+      "`for` é conveniente para repetições com contador.",
+      "`while` repete de acordo com uma condição.",
+      "`for...of` percorre valores; todo laço precisa de uma estratégia de término.",
     ],
   },
   {
@@ -528,15 +528,15 @@ console.log(total); // 60`,
       "Funções agrupam uma tarefa e permitem executá-la com entradas diferentes. Elas ajudam a dividir um problema grande em partes menores.",
     objectives: [
       "Declarar e chamar funções com parâmetros.",
-      "Distinguir retorno de impressão no console.",
+      "Distinguir retorno de impressão no `console`.",
       "Usar funções de seta e compreender o escopo local.",
     ],
     sections: [
       {
         title: "Entradas, processamento e retorno",
         text: [
-          "Parâmetros são os nomes das entradas na definição; argumentos são os valores passados na chamada. return encerra a execução da função e entrega um valor a quem chamou.",
-          "console.log() apenas exibe algo. Uma função sem return explícito retorna undefined. Variáveis declaradas dentro da função ficam no seu escopo local e não podem ser acessadas diretamente de fora.",
+          "Parâmetros são os nomes das entradas na definição; argumentos são os valores passados na chamada. `return` encerra a execução da função e entrega um valor a quem chamou.",
+          "`console.log()` apenas exibe algo. Uma função sem `return` explícito retorna `undefined`. Variáveis declaradas dentro da função ficam no seu escopo local e não podem ser acessadas diretamente de fora.",
         ],
         code: `function calcularTotal(preco, quantidade) {
   const total = preco * quantidade;
@@ -549,8 +549,8 @@ console.log(calcularTotal(8, 2)); // 16`,
       {
         title: "Outras formas de escrever uma função",
         text: [
-          "Uma função também pode ser atribuída a uma constante. Arrow functions usam =>. Se o corpo é uma única expressão, o retorno pode ser implícito. Com chaves, escreva return quando precisar retornar um valor.",
-          "Parâmetros podem ter valores padrão, usados quando o argumento é omitido ou undefined. Funções de seta não têm seu próprio this; por enquanto, usaremos funções que recebem os dados explicitamente.",
+          "Uma função também pode ser atribuída a uma constante. Arrow functions usam `=>`. Se o corpo é uma única expressão, o retorno pode ser implícito. Com chaves, escreva `return` quando precisar retornar um valor.",
+          "Parâmetros podem ter valores padrão, usados quando o argumento é omitido ou `undefined`. Funções de seta não têm seu próprio `this`; por enquanto, usaremos funções que recebem os dados explicitamente.",
         ],
         code: `const dobrar = (numero) => numero * 2;
 
@@ -563,17 +563,18 @@ console.log(saudar("Ravi"));`,
       },
     ],
     mistakes: [
-      "Esquecer return em uma função que deveria produzir um resultado.",
-      "Confundir definir uma função com chamá-la: calcularTotal não é o mesmo que calcularTotal(2, 3).",
+      "Esquecer `return` em uma função que deveria produzir um resultado.",
+      "Confundir definir uma função com chamá-la: `calcularTotal` não é o mesmo que `calcularTotal(2, 3)`.",
     ],
     practices: [
-      "Dê nomes que indiquem a tarefa, como calcularMedia.",
+      "Dê nomes que indiquem a tarefa, como `calcularMedia`.",
       "Prefira funções pequenas, com entradas e saídas claras.",
     ],
     exercises: [
       {
-        prompt: "Crie calcularMedia(a, b) e retorne a média dos dois números.",
-        hint: "Use return (a + b) / 2.",
+        prompt:
+          "Crie `calcularMedia(a, b)` e retorne a média dos dois números.",
+        hint: "Use `return` (a + b) / 2.",
         solution: `function calcularMedia(a, b) {
   return (a + b) / 2;
 }
@@ -581,7 +582,7 @@ console.log(calcularMedia(7, 9)); // 8`,
       },
       {
         prompt:
-          "Crie uma arrow function ehPar que retorna se um inteiro é par.",
+          "Crie uma arrow `function` `ehPar` que retorna se um inteiro é par.",
         hint: "Verifique o resto da divisão por 2.",
         solution: `const ehPar = (numero) => numero % 2 === 0;
 console.log(ehPar(8)); // true
@@ -590,7 +591,7 @@ console.log(ehPar(7)); // false`,
     ],
     summary: [
       "Funções recebem argumentos por meio dos parâmetros.",
-      "return devolve um resultado e encerra a chamada.",
+      "`return` devolve um resultado e encerra a chamada.",
       "Escopo local protege os detalhes internos de cada função.",
     ],
   },
@@ -603,15 +604,15 @@ console.log(ehPar(7)); // false`,
       "Um array reúne valores em uma lista ordenada. É uma estrutura útil para representar tarefas, produtos, notas e muitos outros conjuntos de dados.",
     objectives: [
       "Acessar índices e modificar listas.",
-      "Transformar dados com map e selecionar com filter.",
-      "Localizar valores com find e percorrer com forEach.",
+      "Transformar dados com `map` e selecionar com `filter`.",
+      "Localizar valores com `find` e percorrer com `forEach`.",
     ],
     sections: [
       {
         title: "Listas começam no índice zero",
         text: [
-          "Arrays são escritos com colchetes. O primeiro item tem índice 0; length informa a quantidade de itens. Acessar um índice que não existe normalmente resulta em undefined.",
-          "push() adiciona ao final e pop() remove o último item, retornando-o. Esses métodos alteram o array original. Uma const impede trocar a referência da lista, mas permite alterar seus itens.",
+          "Arrays são escritos com colchetes. O primeiro item tem índice 0; `length` informa a quantidade de itens. Acessar um índice que não existe normalmente resulta em `undefined`.",
+          "`push()` adiciona ao final e `pop()` remove o último item, retornando-o. Esses métodos alteram o array original. Uma `const` impede trocar a referência da lista, mas permite alterar seus itens.",
         ],
         code: `const assuntos = ["HTML", "CSS"];
 assuntos.push("JavaScript");
@@ -624,8 +625,8 @@ console.log(assuntos);`,
       {
         title: "Métodos que expressam uma intenção",
         text: [
-          "map() cria um novo array com o resultado de transformar cada item. filter() cria um novo array apenas com os itens que passam em uma condição. find() retorna o primeiro item que passa, ou undefined se nenhum passar.",
-          "includes() verifica se um valor está na lista. forEach() chama uma função para cada item, mas não cria uma lista de resultados. Os callbacks recebem o item e também podem receber seu índice. map e filter não alteram por si mesmos a estrutura da lista original; evite modificar objetos dentro dos callbacks sem necessidade.",
+          "`map()` cria um novo array com o resultado de transformar cada item. `filter()` cria um novo array apenas com os itens que passam em uma condição. `find()` retorna o primeiro item que passa, ou `undefined` se nenhum passar.",
+          "`includes()` verifica se um valor está na lista. `forEach()` chama uma função para cada item, mas não cria uma lista de resultados. Os callbacks recebem o item e também podem receber seu índice. `map` e `filter` não alteram por si mesmos a estrutura da lista original; evite modificar objetos dentro dos callbacks sem necessidade.",
         ],
         code: `const notas = [5, 8, 9, 6];
 const notasEmDobro = notas.map((nota) => nota * 2);
@@ -639,7 +640,7 @@ notas.forEach((nota, indice) => console.log(indice, nota));`,
     ],
     mistakes: [
       "Acessar o primeiro item com índice 1 em vez de 0.",
-      "Esperar que forEach() devolva um array transformado.",
+      "Esperar que `forEach()` devolva um array transformado.",
     ],
     practices: [
       "Escolha o método pelo objetivo: transformar, filtrar ou encontrar.",
@@ -649,7 +650,7 @@ notas.forEach((nota, indice) => console.log(indice, nota));`,
       {
         prompt:
           "Dado [10, 20, 30], crie uma nova lista com os preços acrescidos de 5.",
-        hint: "Use map() e retorne preco + 5.",
+        hint: "Use `map()` e retorne preco + 5.",
         solution: `const precos = [10, 20, 30];
 const novosPrecos = precos.map((preco) => preco + 5);
 console.log(novosPrecos);`,
@@ -657,7 +658,7 @@ console.log(novosPrecos);`,
       {
         prompt:
           'Selecione os nomes com pelo menos 4 caracteres em ["Ana", "Bruno", "Lia", "Caio"].',
-        hint: "Strings também têm a propriedade length.",
+        hint: "Strings também têm a propriedade `length`.",
         solution: `const nomes = ["Ana", "Bruno", "Lia", "Caio"];
 const selecionados = nomes.filter((nome) => nome.length >= 4);
 console.log(selecionados); // ["Bruno", "Caio"]`,
@@ -665,8 +666,8 @@ console.log(selecionados); // ["Bruno", "Caio"]`,
     ],
     summary: [
       "Arrays armazenam sequências acessadas por índices a partir de zero.",
-      "push e pop alteram a lista original.",
-      "map transforma, filter seleciona e find localiza o primeiro resultado.",
+      "`push` e `pop` alteram a lista original.",
+      "`map` transforma, `filter` seleciona e `find` localiza o primeiro resultado.",
     ],
   },
   {
@@ -685,7 +686,7 @@ console.log(selecionados); // ["Bruno", "Caio"]`,
       {
         title: "Dados com nomes",
         text: [
-          "Um objeto literal usa chaves com pares de propriedade e valor. A notação de ponto acessa um nome conhecido; colchetes permitem usar uma string ou uma variável como chave. Uma propriedade ausente retorna undefined.",
+          "Um objeto literal usa chaves com pares de propriedade e valor. A notação de ponto acessa um nome conhecido; colchetes permitem usar uma `string` ou uma variável como chave. Uma propriedade ausente retorna `undefined`.",
           "Objetos também podem guardar funções, chamadas de métodos quando associadas a propriedades. Neste curso, vamos priorizar funções que recebem os objetos como argumentos para manter o fluxo explícito.",
         ],
         code: `const estudante = {
@@ -719,7 +720,7 @@ console.log(baratos);`,
       },
     ],
     mistakes: [
-      "Achar que const impede modificar propriedades de um objeto.",
+      "Achar que `const` impede modificar propriedades de um objeto.",
       "Acreditar que { ...objeto } copia profundamente todos os objetos internos.",
     ],
     practices: [
@@ -729,16 +730,16 @@ console.log(baratos);`,
     exercises: [
       {
         prompt:
-          "Crie um objeto livro com titulo, autor e lido. Depois marque lido como true.",
-        hint: "Acesse a propriedade com livro.lido.",
+          "Crie um objeto livro com titulo, autor e lido. Depois marque lido como `true`.",
+        hint: "Acesse a propriedade com `livro.lido`.",
         solution: `const livro = { titulo: "Meu primeiro código", autor: "Ana", lido: false };
 livro.lido = true;
 console.log(livro);`,
       },
       {
         prompt:
-          "Extraia apenas os nomes de uma lista de dois produtos usando map().",
-        hint: "O callback deve retornar produto.nome.",
+          "Extraia apenas os nomes de uma lista de dois produtos usando `map()`.",
+        hint: "O callback deve retornar `produto.nome`.",
         solution: `const produtos = [
   { nome: "Lápis", preco: 2 },
   { nome: "Borracha", preco: 3 }
@@ -760,7 +761,7 @@ console.log(produtos.map((produto) => produto.nome));`,
     intro:
       "O navegador representa o documento HTML como uma árvore de objetos: o DOM. Com ele, JavaScript pode ler e modificar elementos visíveis.",
     objectives: [
-      "Selecionar elementos com querySelector e querySelectorAll.",
+      "Selecionar elementos com `querySelector` e `querySelectorAll`.",
       "Alterar texto e classes com segurança.",
       "Criar e inserir novos elementos.",
     ],
@@ -768,8 +769,8 @@ console.log(produtos.map((produto) => produto.nome));`,
       {
         title: "Encontre o elemento e atualize o conteúdo",
         text: [
-          "document.querySelector() recebe um seletor CSS e retorna o primeiro elemento encontrado ou null. querySelectorAll() retorna uma NodeList com todos os elementos correspondentes; ela pode ser percorrida com for...of.",
-          "textContent altera o texto sem interpretá-lo como HTML. classList.add(), remove() e toggle() manipulam classes. No seu próprio site, carregue o script externo com defer para que ele rode depois da leitura do HTML. Nas demonstrações, o HTML de apoio já está disponível quando o código começa.",
+          "`document.querySelector()` recebe um seletor CSS e retorna o primeiro elemento encontrado ou `null`. `querySelectorAll()` retorna uma `NodeList` com todos os elementos correspondentes; ela pode ser percorrida com `for...of`.",
+          "`textContent` altera o texto sem interpretá-lo como HTML. `classList.add()`, `remove()` e `toggle()` manipulam classes. No seu próprio site, carregue o script externo com `defer` para que ele rode depois da leitura do HTML. Nas demonstrações, o HTML de apoio já está disponível quando o código começa.",
         ],
         html: `<h3 id="titulo">Título original</h3>
 <p class="dica">Esta dica será atualizada.</p>`,
@@ -786,8 +787,8 @@ console.log("Elementos atualizados.");`,
       {
         title: "Crie elementos, não strings de HTML",
         text: [
-          "document.createElement() cria um elemento ainda desconectado da página. Depois de configurar seu texto, use append() para inseri-lo em um elemento existente. remove() permite remover um elemento.",
-          "Evite colocar entradas de usuários em innerHTML: o navegador interpretaria o conteúdo como marcação, podendo introduzir vulnerabilidades. Para exibir texto, prefira textContent.",
+          "`document.createElement()` cria um elemento ainda desconectado da página. Depois de configurar seu texto, use `append()` para inseri-lo em um elemento existente. `remove()` permite remover um elemento.",
+          "Evite colocar entradas de usuários em `innerHTML`: o navegador interpretaria o conteúdo como marcação, podendo introduzir vulnerabilidades. Para exibir texto, prefira `textContent`.",
         ],
         html: `<ul id="lista"></ul>`,
         code: `const lista = document.querySelector("#lista");
@@ -801,18 +802,18 @@ console.log("Três itens inseridos.");`,
       },
     ],
     mistakes: [
-      "Tentar usar uma propriedade de null quando o seletor não encontrou nada.",
+      "Tentar usar uma propriedade de `null` quando o seletor não encontrou nada.",
       "Executar o script antes de o elemento existir.",
     ],
     practices: [
       "Use seletores claros e IDs únicos.",
-      "Insira texto externo com textContent, não com innerHTML.",
+      "Insira texto externo com `textContent`, não com `innerHTML`.",
     ],
     exercises: [
       {
         prompt:
           'Altere o texto do parágrafo #mensagem para "Pronto para aprender".',
-        hint: "Selecione o elemento e atribua a textContent.",
+        hint: "Selecione o elemento e atribua a `textContent`.",
         html: `<p id="mensagem">Aguardando...</p>`,
         solution: `const mensagem = document.querySelector("#mensagem");
 mensagem.textContent = "Pronto para aprender";`,
@@ -820,7 +821,7 @@ mensagem.textContent = "Pronto para aprender";`,
       {
         prompt:
           "Crie um parágrafo com seu objetivo de estudo e adicione-o em #area.",
-        hint: "Combine createElement(), textContent e append().",
+        hint: "Combine `createElement()`, `textContent` e `append()`.",
         html: `<section id="area"></section>`,
         solution: `const paragrafo = document.createElement("p");
 paragrafo.textContent = "Vou praticar um pouco todos os dias.";
@@ -829,8 +830,8 @@ document.querySelector("#area").append(paragrafo);`,
     ],
     summary: [
       "O DOM é a representação da página em objetos.",
-      "Seletores localizam elementos; textContent atualiza textos.",
-      "createElement e append permitem montar interfaces sem interpretar HTML de usuários.",
+      "Seletores localizam elementos; `textContent` atualiza textos.",
+      "`createElement` e `append` permitem montar interfaces sem interpretar HTML de usuários.",
     ],
   },
   {
@@ -841,7 +842,7 @@ document.querySelector("#area").append(paragrafo);`,
     intro:
       "Em vez de executar tudo de uma vez, uma interface aguarda ações. Eventos avisam quando um clique, uma digitação ou outra mudança aconteceu.",
     objectives: [
-      "Registrar listeners com addEventListener.",
+      "Registrar listeners com `addEventListener`.",
       "Usar o objeto de evento.",
       "Atualizar a interface a partir de um estado.",
     ],
@@ -849,7 +850,7 @@ document.querySelector("#area").append(paragrafo);`,
       {
         title: "Uma função para quando o clique chegar",
         text: [
-          "addEventListener() registra uma função que será chamada quando o evento ocorrer. Passe a função, sem chamá-la durante o registro. A função recebe um objeto com informações sobre o evento.",
+          "`addEventListener()` registra uma função que será chamada quando o evento ocorrer. Passe a função, sem chamá-la durante o registro. A função recebe um objeto com informações sobre o evento.",
           "No contador, a variável guarda o estado e a interface mostra esse estado. Ao receber um clique, primeiro atualizamos o número e depois o texto. Execute e use o botão dentro da demonstração.",
         ],
         html: `<button id="somar" type="button">Somar 1</button>
@@ -866,7 +867,7 @@ console.log("Clique em Somar 1 na demonstração.");`,
       {
         title: "Digitação e o objeto de evento",
         text: [
-          "input é disparado quando o usuário altera o valor de um campo. event.target indica onde o evento se originou; event.currentTarget é o elemento no qual o listener em execução foi registrado.",
+          "`input` é disparado quando o usuário altera o valor de um campo. `event.target` indica onde o evento se originou; `event.currentTarget` é o elemento no qual o listener em execução foi registrado.",
           "Muitos eventos propagam de elementos internos para seus ancestrais: esse processo é chamado de bubbling. Isso permite delegar eventos de uma lista a um contêiner, embora aqui usemos listeners diretamente nos elementos.",
         ],
         html: `<label for="nome">Seu nome</label>
@@ -881,7 +882,7 @@ campo.addEventListener("input", (event) => {
       },
     ],
     mistakes: [
-      'Escrever addEventListener("click", minhaFuncao()) e executar a função cedo demais.',
+      'Escrever `addEventListener("click", minhaFuncao())` e executar a função cedo demais.',
       "Usar uma div clicável quando um button nativo já oferece teclado e semântica.",
     ],
     practices: [
@@ -892,7 +893,7 @@ campo.addEventListener("input", (event) => {
       {
         prompt:
           'Ao clicar em um botão, altere a mensagem de "Pendente" para "Concluído".',
-        hint: "Registre um listener de click.",
+        hint: "Registre um listener de `click`.",
         html: `<button id="concluir" type="button">Concluir</button>
 <p id="estado">Pendente</p>`,
         solution: `document.querySelector("#concluir").addEventListener("click", () => {
@@ -901,7 +902,7 @@ campo.addEventListener("input", (event) => {
       },
       {
         prompt: "Mostre a quantidade de caracteres digitados em um campo.",
-        hint: "Leia value.length a cada evento input.",
+        hint: "Leia `value.length` a cada evento `input`.",
         html: `<label for="texto">Texto</label><input id="texto">
 <p id="tamanho">0 caracteres</p>`,
         solution: `document.querySelector("#texto").addEventListener("input", (event) => {
@@ -924,7 +925,7 @@ campo.addEventListener("input", (event) => {
     intro:
       "Formulários conectam as intenções das pessoas aos dados de um programa. Validar significa conferir se os dados atendem às regras antes de processá-los.",
     objectives: [
-      "Tratar o evento submit e evitar recarregamentos.",
+      "Tratar o evento `submit` e evitar recarregamentos.",
       "Usar validação nativa e regras em JavaScript.",
       "Converter e verificar entradas numéricas.",
     ],
@@ -932,8 +933,8 @@ campo.addEventListener("input", (event) => {
       {
         title: "Comece com os recursos do HTML",
         text: [
-          'label associa uma descrição ao campo. required, type="email", minlength, min e max ajudam a validar entradas usando o navegador. O evento submit pertence ao formulário: assim, tanto clicar no botão quanto pressionar Enter funcionam.',
-          "event.preventDefault() impede a ação padrão de envio, que normalmente navegaria para outro endereço ou recarregaria a página. A validação nativa acontece antes do evento submit; campos inválidos impedem esse evento.",
+          'label associa uma descrição ao campo. `required`, type="email", `minlength`, `min` e `max` ajudam a validar entradas usando o navegador. O evento `submit` pertence ao formulário: assim, tanto clicar no botão quanto pressionar Enter funcionam.',
+          "`event.preventDefault()` impede a ação padrão de envio, que normalmente navegaria para outro endereço ou recarregaria a página. A validação nativa acontece antes do evento `submit`; campos inválidos impedem esse evento.",
         ],
         html: `<form id="cadastro">
   <label for="email">E-mail</label>
@@ -952,7 +953,7 @@ formulario.addEventListener("submit", (event) => {
       {
         title: "Validação de uma regra de negócio",
         text: [
-          "Mesmo quando o HTML ajuda, confira os dados antes de usá-los. trim() remove espaços das extremidades. Number.isFinite() verifica se o valor já convertido é um número finito; Number.isInteger() verifica se é inteiro.",
+          "Mesmo quando o HTML ajuda, confira os dados antes de usá-los. `trim()` remove espaços das extremidades. `Number.isFinite()` verifica se o valor já convertido é um número finito; `Number.isInteger()` verifica se é inteiro.",
           "Validar no navegador melhora a experiência, mas não protege um servidor. Em um sistema real com backend, todas as regras importantes precisam ser verificadas também no servidor. Esta demonstração não envia dados.",
         ],
         html: `<form id="inscricao" novalidate>
@@ -985,14 +986,14 @@ formulario.addEventListener("submit", (event) => {
       {
         prompt:
           'Valide se o texto "  Ana  " tem ao menos três caracteres depois de remover espaços externos.',
-        hint: "Use trim() antes de consultar length.",
+        hint: "Use `trim()` antes de consultar `length`.",
         solution: `const nome = "  Ana  ".trim();
 console.log(nome.length >= 3); // true`,
       },
       {
         prompt:
           "Valide um preço textual: deve ser não vazio, finito e maior que zero.",
-        hint: "Combine trim(), Number() e Number.isFinite().",
+        hint: "Combine `trim()`, `Number()` e `Number.isFinite()`.",
         solution: `const entrada = "29.90";
 const texto = entrada.trim();
 const preco = Number(texto);
@@ -1001,7 +1002,7 @@ console.log(valido); // true`,
       },
     ],
     summary: [
-      "submit trata o envio por clique e por teclado.",
+      "`submit` trata o envio por clique e por teclado.",
       "O HTML oferece validação nativa; JavaScript implementa regras adicionais.",
       "Entradas precisam ser normalizadas, convertidas e verificadas.",
     ],
@@ -1012,18 +1013,18 @@ console.log(valido); // true`,
     duration: 35,
     group: "JavaScript na web",
     intro:
-      "Até aqui, os dados desapareciam ao reiniciar um exemplo. JSON permite representar dados como texto, e localStorage pode guardar esse texto no navegador.",
+      "Até aqui, os dados desapareciam ao reiniciar um exemplo. `JSON` permite representar dados como texto, e `localStorage` pode guardar esse texto no navegador.",
     objectives: [
-      "Serializar e ler dados com JSON.",
-      "Usar setItem, getItem e removeItem.",
+      "Serializar e ler dados com `JSON`.",
+      "Usar `setItem`, `getItem` e `removeItem`.",
       "Tratar falhas e entender os limites do armazenamento local.",
     ],
     sections: [
       {
         title: "De objeto para texto e de volta",
         text: [
-          "JSON é um formato de texto para troca de dados. Suas chaves e strings usam aspas duplas; não há comentários nem vírgula após o último item. JSON.stringify() transforma dados compatíveis em uma string; JSON.parse() interpreta um texto JSON.",
-          "JSON não preserva tudo que existe em JavaScript: funções e undefined não são representados como propriedades de objeto, e datas são normalmente serializadas como strings. Texto inválido em JSON.parse() causa um erro.",
+          "`JSON` é um formato de texto para troca de dados. Suas chaves e strings usam aspas duplas; não há comentários nem vírgula após o último item. `JSON.stringify()` transforma dados compatíveis em uma `string`; `JSON.parse()` interpreta um texto `JSON`.",
+          "`JSON` não preserva tudo que existe em JavaScript: funções e `undefined` não são representados como propriedades de objeto, e datas são normalmente serializadas como strings. Texto inválido em `JSON.parse()` causa um erro.",
         ],
         code: `const tarefa = { titulo: "Revisar arrays", concluida: false };
 const texto = JSON.stringify(tarefa);
@@ -1035,9 +1036,9 @@ console.log(recuperada.concluida);`,
       {
         title: "Persistência com cuidado",
         text: [
-          "localStorage guarda pares de chave e valor como strings, associados à origem do site. getItem() retorna null se a chave não existir. Os dados costumam permanecer entre visitas, mas podem ser apagados pelo usuário ou bloqueados pelo navegador. Não use para senhas nem outros segredos.",
-          "Use try...catch para tratar JSON inválido, bloqueio de armazenamento e falta de espaço. Valide o formato recuperado: um JSON válido não significa que os dados têm a estrutura esperada.",
-          "Os exemplos deste curso rodam em um iframe isolado sem acesso ao armazenamento da página principal. Por segurança, localStorage pode ser bloqueado ali. O exemplo trata essa situação; para testar a persistência real, copie o código para uma página servida por HTTP no seu próprio ambiente. O progresso do curso usa o armazenamento da página principal separadamente.",
+          "`localStorage` guarda pares de chave e valor como strings, associados à origem do site. `getItem()` retorna `null` se a chave não existir. Os dados costumam permanecer entre visitas, mas podem ser apagados pelo usuário ou bloqueados pelo navegador. Não use para senhas nem outros segredos.",
+          "Use `try...catch` para tratar `JSON` inválido, bloqueio de armazenamento e falta de espaço. Valide o formato recuperado: um `JSON` válido não significa que os dados têm a estrutura esperada.",
+          "Os exemplos deste curso rodam em um iframe isolado sem acesso ao armazenamento da página principal. Por segurança, `localStorage` pode ser bloqueado ali. O exemplo trata essa situação; para testar a persistência real, copie o código para uma página servida por HTTP no seu próprio ambiente. O progresso do curso usa o armazenamento da página principal separadamente.",
         ],
         code: `const chave = "curso-js:preferencias-demo";
 try {
@@ -1055,8 +1056,8 @@ try {
       },
     ],
     mistakes: [
-      'Salvar um objeto diretamente e obter a string "[object Object]".',
-      "Achar que localStorage é um banco de dados seguro ou sincronizado entre dispositivos.",
+      'Salvar um objeto diretamente e obter a `string` "[`object` `Object`]".',
+      "Achar que `localStorage` é um banco de dados seguro ou sincronizado entre dispositivos.",
     ],
     practices: [
       "Use chaves com prefixos específicos do projeto.",
@@ -1065,8 +1066,8 @@ try {
     exercises: [
       {
         prompt:
-          "Converta uma lista de dois assuntos para JSON e reconstrua a lista.",
-        hint: "Combine JSON.stringify() e JSON.parse().",
+          "Converta uma lista de dois assuntos para `JSON` e reconstrua a lista.",
+        hint: "Combine `JSON.stringify()` e `JSON.parse()`.",
         solution: `const assuntos = ["DOM", "Eventos"];
 const texto = JSON.stringify(assuntos);
 const lista = JSON.parse(texto);
@@ -1074,8 +1075,9 @@ console.log(Array.isArray(lista)); // true
 console.log(lista);`,
       },
       {
-        prompt: 'Trate o erro ao tentar interpretar o texto "isto não é JSON".',
-        hint: "Coloque JSON.parse() dentro de try...catch.",
+        prompt:
+          'Trate o erro ao tentar interpretar o texto "isto não é `JSON`".',
+        hint: "Coloque `JSON.parse()` dentro de `try...catch`.",
         solution: `try {
   const dados = JSON.parse("isto não é JSON");
   console.log(dados);
@@ -1085,8 +1087,8 @@ console.log(lista);`,
       },
     ],
     summary: [
-      "JSON transforma dados compatíveis em texto e permite reconstruí-los.",
-      "localStorage guarda strings por origem e pode estar indisponível.",
+      "`JSON` transforma dados compatíveis em texto e permite reconstruí-los.",
+      "`localStorage` guarda strings por origem e pode estar indisponível.",
       "Persistência exige tratamento de erros e validação dos dados lidos.",
     ],
   },
@@ -1098,15 +1100,15 @@ console.log(lista);`,
     intro:
       "Algumas tarefas levam tempo, como uma requisição de rede. A programação assíncrona permite aguardar resultados sem bloquear a interface durante a espera.",
     objectives: [
-      "Reconhecer os estados de uma Promise.",
-      "Consumir Promises com then ou async/await.",
+      "Reconhecer os estados de uma `Promise`.",
+      "Consumir Promises com then ou `async`/`await`.",
       "Tratar rejeições e entender a ordem de execução.",
     ],
     sections: [
       {
         title: "Uma promessa de resultado futuro",
         text: [
-          "Uma Promise começa pendente e pode ser cumprida com um valor ou rejeitada com um motivo. then() registra uma reação ao sucesso; catch() trata a rejeição. setTimeout() agenda uma função para depois de um intervalo mínimo; o tempo exato depende da execução do navegador.",
+          "Uma `Promise` começa pendente e pode ser cumprida com um valor ou rejeitada com um motivo. `then()` registra uma reação ao sucesso; `catch()` trata a rejeição. `setTimeout()` agenda uma função para depois de um intervalo mínimo; o tempo exato depende da execução do navegador.",
           'Este exemplo simula uma consulta sem depender da internet. Observe que "Consulta iniciada" aparece antes dos dados. A espera não impede que o restante do script síncrono execute.',
         ],
         code: `function consultarAssuntos() {
@@ -1122,9 +1124,9 @@ console.log("Consulta iniciada.");`,
       {
         title: "Escrevendo a espera com async e await",
         text: [
-          "Uma função async sempre retorna uma Promise. Dentro dela, await suspende apenas a continuação dessa função até que a Promise se resolva. Se a Promise for rejeitada, await lança o motivo como erro, que pode ser tratado com try...catch.",
-          "Use finally para limpeza, como retirar um indicador de carregamento. Para tarefas independentes, Promise.all() permite aguardar todas em conjunto; ela rejeita se uma das entradas rejeitar.",
-          "Em uma consulta real, fetch() retorna uma Promise de Response. Respostas HTTP como 404 não rejeitam automaticamente: confira response.ok antes de usar await response.json(). Não usamos um endpoint inventado nesta aula; as simulações abaixo são completas e executáveis.",
+          "Uma função `async` sempre retorna uma `Promise`. Dentro dela, `await` suspende apenas a continuação dessa função até que a `Promise` se resolva. Se a `Promise` for rejeitada, `await` lança o motivo como erro, que pode ser tratado com `try...catch`.",
+          "Use `finally` para limpeza, como retirar um indicador de carregamento. Para tarefas independentes, `Promise.all()` permite aguardar todas em conjunto; ela rejeita se uma das entradas rejeitar.",
+          "Em uma consulta real, `fetch()` retorna uma `Promise` de `Response`. Respostas HTTP como 404 não rejeitam automaticamente: confira `response.ok` antes de usar `await` `response.json()`. Não usamos um endpoint inventado nesta aula; as simulações abaixo são completas e executáveis.",
         ],
         code: `function carregarPerfil(deveFalhar = false) {
   return new Promise((resolve, reject) => {
@@ -1153,19 +1155,19 @@ iniciar();`,
       },
     ],
     mistakes: [
-      "Achar que await bloqueia toda a página.",
-      "Esquecer de tratar uma Promise rejeitada.",
-      "Presumir que fetch rejeita para qualquer erro HTTP.",
+      "Achar que `await` bloqueia toda a página.",
+      "Esquecer de tratar uma `Promise` rejeitada.",
+      "Presumir que `fetch` rejeita para qualquer erro HTTP.",
     ],
     practices: [
       "Mostre estados de carregamento, sucesso e erro.",
-      "Não coloque await em sequência para tarefas independentes sem necessidade.",
+      "Não coloque `await` em sequência para tarefas independentes sem necessidade.",
     ],
     exercises: [
       {
         prompt:
-          "Crie uma função async que aguarde Promise.resolve(42) e mostre o valor.",
-        hint: "Use await dentro da função async e depois chame-a.",
+          "Crie uma função `async` que aguarde `Promise.resolve(42)` e mostre o valor.",
+        hint: "Use `await` dentro da função `async` e depois chame-a.",
         solution: `async function mostrarResposta() {
   const resposta = await Promise.resolve(42);
   console.log(resposta);
@@ -1175,7 +1177,7 @@ mostrarResposta();`,
       {
         prompt:
           "Aguarde duas Promises independentes em conjunto e mostre seus resultados.",
-        hint: "Use await Promise.all([...]).",
+        hint: "Use `await` `Promise.all([...])`.",
         solution: `async function carregarTudo() {
   try {
     const resultados = await Promise.all([
@@ -1192,7 +1194,7 @@ carregarTudo();`,
     ],
     summary: [
       "Promises representam resultados futuros e podem ser rejeitadas.",
-      "async/await organiza o consumo de Promises sem bloquear a interface.",
+      "`async`/`await` organiza o consumo de Promises sem bloquear a interface.",
       "Trate erros e diferencie falha de rede de resposta HTTP de erro.",
     ],
   },
@@ -1212,9 +1214,9 @@ carregarTudo();`,
       {
         title: "Planeje antes de escrever",
         text: [
-          "O estado será um array de objetos com id, titulo e concluida. A interface será reconstruída a partir desse estado após cada ação. Assim, o HTML reflete os dados e não precisa ser usado como banco de informações.",
+          "O estado será um array de objetos com `id`, titulo e concluida. A interface será reconstruída a partir desse estado após cada ação. Assim, o HTML reflete os dados e não precisa ser usado como banco de informações.",
           "Critérios de aceite: impedir títulos vazios, limitar cada título a 80 caracteres, adicionar itens por Enter ou botão, alternar conclusão, excluir itens e mostrar quantos ainda estão pendentes. Persistência é um aprimoramento: a lista deve continuar funcionando mesmo quando ela estiver indisponível.",
-          "Execute a implementação abaixo e experimente o fluxo. No iframe isolado, a lista funciona em memória; a mensagem de armazenamento explica a limitação. Em uma página própria servida por HTTP, ela usa localStorage.",
+          "Execute a implementação abaixo e experimente o fluxo. No iframe isolado, a lista funciona em memória; a mensagem de armazenamento explica a limitação. Em uma página própria servida por HTTP, ela usa `localStorage`.",
         ],
         html: `<h3>Minha lista de estudos</h3>
 <form id="novo-assunto">
@@ -1313,8 +1315,8 @@ renderizar();`,
       {
         title: "Leve o projeto para o seu computador",
         text: [
-          'Crie uma pasta com index.html, style.css e app.js. Copie o HTML de apoio para o body do documento e o JavaScript para app.js. Carregue-o com <script src="app.js" defer></script> no HTML; mantenha a apresentação no arquivo CSS.',
-          "Sirva a pasta com um servidor HTTP local da sua ferramenta de desenvolvimento. O método crypto.randomUUID() está disponível em contextos seguros (HTTPS e localhost) nos navegadores atuais. Use esse contexto para testar o projeto completo.",
+          'Crie uma pasta com index.html, style.css e app.js. Copie o HTML de apoio para o body do documento e o JavaScript para app.js. Carregue-o com <script `src`="app.js" `defer`></script> no HTML; mantenha a apresentação no arquivo CSS.',
+          "Sirva a pasta com um servidor HTTP local da sua ferramenta de desenvolvimento. O método `crypto.randomUUID()` está disponível em contextos seguros (HTTPS e localhost) nos navegadores atuais. Use esse contexto para testar o projeto completo.",
           "Teste o fluxo com mouse e teclado. Recarregue a página para conferir a persistência; salve dois títulos iguais e exclua apenas um; tente cadastrar somente espaços. Abra as ferramentas do navegador para investigar erros e inspecionar o armazenamento.",
         ],
       },
@@ -1326,7 +1328,7 @@ renderizar();`,
     ],
     practices: [
       "Separe dados, renderização e persistência em funções pequenas.",
-      "Use textContent para títulos e botões acessíveis por teclado.",
+      "Use `textContent` para títulos e botões acessíveis por teclado.",
       "Teste entradas vazias, dados salvos inválidos e armazenamento bloqueado.",
     ],
     exercises: [

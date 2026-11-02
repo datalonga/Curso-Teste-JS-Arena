@@ -4,7 +4,11 @@ import { readFile, access } from "node:fs/promises";
 import vm from "node:vm";
 import path from "node:path";
 import { modules } from "../scripts/course.mjs";
-import { escapeHTML } from "../scripts/html.mjs";
+import {
+  escapeHTML,
+  formatLessonText,
+  plainLessonText,
+} from "../scripts/html.mjs";
 
 test("16 módulos completos com progressão e exemplos sintaticamente válidos", () => {
   assert.equal(modules.length, 16);
@@ -71,7 +75,7 @@ test("páginas são independentes, contêm o conteúdo e têm links locais váli
   }
   for (const [i, module] of modules.entries()) {
     const html = await readFile(files[i + 1], "utf8");
-    assert.ok(html.includes(escapeHTML(module.intro)));
+    assert.ok(html.includes(formatLessonText(module.intro)));
     assert.ok(html.includes('id="objetivos"'));
     assert.ok(html.includes('id="exercicios"'));
     assert.ok(html.includes('id="resumo"'));
@@ -133,4 +137,109 @@ test("DOM cobre operações além de selecionar e criar, sem execução automát
   ]) {
     assert.ok(code.includes(api), `DOM: exemplo de ${api}`);
   }
+});
+
+test("referências técnicas viram negrito seguro, sem interpretar HTML editorial", () => {
+  assert.equal(
+    formatLessonText("`append()` insere no fim e `prepend()` no começo."),
+    '<strong class="language-command">append()</strong> insere no fim e <strong class="language-command">prepend()</strong> no começo.',
+  );
+  assert.equal(
+    formatLessonText('`setAttribute("aria-label", "A&B")`'),
+    '<strong class="language-command">setAttribute(&quot;aria-label&quot;, &quot;A&amp;B&quot;)</strong>',
+  );
+  assert.equal(
+    formatLessonText('`<img src=x onerror="alert(1)">` <script>'),
+    '<strong class="language-command">&lt;img src=x onerror=&quot;alert(1)&quot;&gt;</strong> &lt;script&gt;',
+  );
+  assert.equal(
+    formatLessonText("2 ** 3 e uma `crase aberta"),
+    "2 ** 3 e uma `crase aberta",
+  );
+  assert.equal(
+    plainLessonText("Use `const` e `console.log()` com cuidado."),
+    "Use const e console.log() com cuidado.",
+  );
+  assert.equal(
+    plainLessonText("Texto sem marcações & sem mudanças."),
+    "Texto sem marcações & sem mudanças.",
+  );
+});
+
+test("os 16 módulos renderizam as marcações em todas as áreas de prosa, sem alterar os códigos", async () => {
+  for (const [i, module] of modules.entries()) {
+    const html = await readFile(
+      `modulos/${String(i + 1).padStart(2, "0")}.html`,
+      "utf8",
+    );
+    const prose = [
+      module.intro,
+      ...module.objectives,
+      ...module.sections.flatMap((section) => section.text),
+      ...module.mistakes,
+      ...module.practices,
+      ...module.exercises.flatMap((exercise) => [
+        exercise.prompt,
+        exercise.hint,
+      ]),
+      ...module.summary,
+    ];
+    assert.ok(
+      prose.some((text) => text.includes("`")),
+      `Módulo ${i + 1} tem referências técnicas`,
+    );
+    for (const text of prose) {
+      assert.ok(
+        html.includes(formatLessonText(text)),
+        `Módulo ${i + 1}: prosa formatada: ${text}`,
+      );
+      assert.equal(
+        (text.match(/`/g) || []).length % 2,
+        0,
+        `Módulo ${i + 1}: marcações balanceadas`,
+      );
+    }
+    const description = html.match(
+      /<meta name="description" content="([^"]*)"/,
+    )[1];
+    assert.equal(description, escapeHTML(plainLessonText(module.intro)));
+    const codeBlocks = [
+      ...html.matchAll(/<code class="lesson-(code|html)">([\s\S]*?)<\/code>/g),
+    ];
+    const expectedBlocks = [
+      ...module.sections
+        .filter((section) => section.code)
+        .flatMap((section) => [
+          section.code,
+          ...(section.html ? [section.html] : []),
+        ]),
+      ...module.exercises.flatMap((exercise) => [
+        exercise.solution,
+        ...(exercise.html ? [exercise.html] : []),
+      ]),
+    ];
+    assert.deepEqual(
+      codeBlocks.map((match) => match[2]),
+      expectedBlocks.map(escapeHTML),
+    );
+    assert.ok(codeBlocks.every((match) => !match[2].includes("<strong")));
+  }
+});
+
+test("o trecho solicitado destaca métodos, sem destacar palavras comuns por engano", () => {
+  const section = modules[10].sections.find(
+    (section) => section.title === "Inserir, mover, substituir e remover nós",
+  );
+  for (const method of ["append()", "prepend()", "before()", "after()"]) {
+    assert.ok(
+      formatLessonText(section.text[0]).includes(
+        `<strong class="language-command">${method}</strong>`,
+      ),
+    );
+  }
+  const text = modules[10].sections
+    .flatMap((section) => section.text)
+    .find((text) => text.startsWith("Use `Array.from()`"));
+  assert.ok(text.includes("Se for remover"));
+  assert.ok(!text.includes("Se `for` remover"));
 });

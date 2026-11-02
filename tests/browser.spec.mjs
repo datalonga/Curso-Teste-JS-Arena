@@ -455,3 +455,60 @@ test("evolução do projeto filtra a visão sem apagar dados e restaura foco", a
     "Exibindo 3 de 3 assuntos.",
   );
 });
+
+test("comandos ficam em negrito em todos os módulos e fora dos blocos executáveis", async ({
+  page,
+}) => {
+  for (const [index, module] of modules.entries()) {
+    await page.goto(`/modulos/${String(index + 1).padStart(2, "0")}.html`);
+    const texts = [
+      module.intro,
+      ...module.objectives,
+      ...module.sections.flatMap((section) => section.text),
+      ...module.mistakes,
+      ...module.practices,
+      ...module.exercises.flatMap((exercise) => [
+        exercise.prompt,
+        exercise.hint,
+      ]),
+      ...module.summary,
+    ];
+    const expectedCount = texts.reduce(
+      (total, text) => total + [...text.matchAll(/`([^`\n]+)`/g)].length,
+      0,
+    );
+    await expect(page.locator(".language-command")).toHaveCount(expectedCount);
+    expect(
+      await page
+        .locator(".language-command")
+        .evaluateAll((elements) =>
+          elements.every(
+            (element) =>
+              element.tagName === "STRONG" &&
+              Number(getComputedStyle(element).fontWeight) >= 700,
+          ),
+        ),
+    ).toBe(true);
+    await expect(page.locator(".code-example strong")).toHaveCount(0);
+    await expect(page.locator("iframe")).toHaveCount(0);
+    expect(
+      await page
+        .locator(
+          ".lesson-header > p, .lesson-article p, .lesson-article li, .exercise h3",
+        )
+        .evaluateAll((elements) =>
+          elements.every((element) => !element.textContent.includes("`")),
+        ),
+    ).toBe(true);
+  }
+  await page.goto("/modulos/11.html");
+  const index = modules[10].sections.findIndex(
+    (section) => section.title === "Inserir, mover, substituir e remover nós",
+  );
+  await expect(
+    page
+      .locator(`#parte-${index + 1} > p`)
+      .first()
+      .locator("strong"),
+  ).toHaveText(["append()", "prepend()", "before()", "after()"]);
+});
