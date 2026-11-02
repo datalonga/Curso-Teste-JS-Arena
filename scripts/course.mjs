@@ -1,5 +1,7 @@
 // Conteúdo editorial. Estes trechos são renderizados como texto, nunca importados como código executável.
-export const modules = [
+import { expansions } from "./course-expansions.mjs";
+
+const baseModules = [
   {
     title: "Primeiros passos com JavaScript",
     short: "O que é programação e onde o JavaScript é executado",
@@ -1368,3 +1370,22 @@ console.log(calcularProgresso([
     ],
   },
 ];
+
+// Mantém os exemplos iniciais e acrescenta aprofundamentos na mesma página.
+export const modules = baseModules.map((module, index) => {
+  const extra = expansions[index + 1];
+  if (!extra)
+    throw new Error(`Falta ampliação editorial do módulo ${index + 1}`);
+  const expanded = { ...module, short: extra.short, duration: extra.duration };
+  for (const key of [
+    "objectives",
+    "sections",
+    "mistakes",
+    "practices",
+    "exercises",
+    "summary",
+  ]) {
+    expanded[key] = [...module[key], ...extra[key]];
+  }
+  return expanded;
+});
