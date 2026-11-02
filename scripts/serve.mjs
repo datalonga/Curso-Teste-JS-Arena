@@ -19,7 +19,10 @@ http
       // Serve only the static course, never build scripts, tests or repository metadata.
       if (!(
         relative === "index.html" ||
-        /^(assets|modulos)\/[a-zA-Z0-9._-]+$/.test(relative)
+        /^(assets|modulos)\/[a-zA-Z0-9._-]+$/.test(relative) ||
+        /^projeto\/(?:index\.html|\d{2}\/(?:index\.html|app\.js|estilo\.css))$/.test(
+          relative,
+        )
       )) {
         res.writeHead(404);
         res.end("Página não encontrada.");

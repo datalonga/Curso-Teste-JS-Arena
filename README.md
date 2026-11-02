@@ -12,7 +12,7 @@ npm start
 
 Abra `http://localhost:3000`. O servidor escuta em `0.0.0.0` e aceita o host do preview. Para escolher outra porta, use `PORT=8080 npm start`.
 
-Não é necessário instalar pacotes para servir ou gerar as páginas. Também é possível publicar `index.html`, `assets/` e `modulos/` em qualquer hospedagem estática, mantendo as pastas. Use HTTP/HTTPS, não `file://`, para comportamento consistente de armazenamento e cópia.
+Não é necessário instalar pacotes para servir ou gerar as páginas. Também é possível publicar `index.html`, `assets/`, `modulos/` e `projeto/` em qualquer hospedagem estática, mantendo as pastas. Use HTTP/HTTPS, não `file://`, para comportamento consistente de armazenamento e cópia.
 
 ## O curso
 
@@ -55,6 +55,35 @@ O sumário tem busca sem distinção de acentos, filtros por conclusão, retomad
 O iframe não pode ler o documento principal ou seu armazenamento. Por isso, os exemplos de `localStorage` tratam a indisponibilidade no sandbox. Para testar persistência real, o curso explica como copiar HTML e JavaScript para uma página própria servida por HTTP. O progresso do curso usa outras chaves, no contexto da página principal, sem relação com as demonstrações.
 
 O botão Copiar usa a API de clipboard, com alternativa para ambientes sem essa API e mensagem de orientação se o navegador negar a cópia. A validação de formulário no cliente é apresentada como recurso de experiência, não como substituto da validação no servidor.
+
+## Uma página que evolui com o conteúdo
+
+A trilha **Meu plano de estudos** complementa os exemplos isolados com **16 versões da mesma página**, uma por módulo. Acesse `projeto/index.html` ou o link “Uma página, 16 evoluções” na navegação. Em cada módulo, a seção “Página em evolução” conecta o assunto a uma alteração concreta no projeto.
+
+- **Etapas 1–10:** estrutura HTML, comentários, variáveis, conversões, cálculos, decisões, laços, funções, arrays e objetos. O HTML recebe novas partes, mas ainda é estático; os resultados JavaScript aparecem no console. Essa distinção é explicitada, sem antecipar DOM escondido.
+- **Etapa 11:** a lista, os totais e o progresso passam a ser construídos a partir dos dados pelo DOM.
+- **Etapa 12:** conclusão e exclusão respondem a eventos, com atualização de estado e foco.
+- **Etapa 13:** formulário com validação, Enter, títulos repetidos e IDs independentes.
+- **Etapa 14:** JSON e armazenamento local, com validação de formato e recuperação de falhas.
+- **Etapa 15:** sugestões em uma consulta assíncrona simulada, incluindo carregamento, rejeição, recuperação e prevenção de duplicação.
+- **Etapa 16:** busca, filtros e edição por ID completam a página sem apagar os dados ocultos pelos filtros.
+
+Cada etapa explica **antes / agora**, o que mudou, um trecho localizado no código real, o que observar e uma experiência com resultado esperado. Há comparação visual com a versão anterior e um diff de HTML, CSS e JavaScript derivado dos próprios arquivos, com adições e remoções. O CSS de apoio está pronto desde a primeira etapa e permanece igual, para manter o foco em JavaScript.
+
+Os arquivos completos ficam em `projeto/01/` a `projeto/16/`, cada pasta com `index.html`, `estilo.css` e `app.js`. Podem ser copiados ou baixados e servidos juntos em uma pasta independente; não dependem do JavaScript da interface do curso. Preserve os nomes e não misture versões. A comparação e a prévia não são editores: para fazer mudanças, use uma cópia local dos três arquivos.
+
+**A prévia só executa após clicar em “Ver página desta etapa” ou “Comparar com a anterior”.** Ela usa um iframe sandbox com console próprio, sem acesso à página principal, à rede ou ao armazenamento dela. Comparar abre dois contextos independentes; executar de novo reinicia a simulação; fechar descarta os iframes. Os trechos completos e as versões anteriores são mantidos como texto escapado ou templates inertes, nunca como scripts da interface.
+
+Ao abrir uma **página independente**, seu `app.js` é executado normalmente, como em qualquer projeto web. Nesse contexto, as etapas 14–16 compartilham a chave `js-em-pratica:projeto-evolutivo:v1`, separada do progresso do curso e dos outros exemplos. Para experimentar recarga persistente, use HTTP/HTTPS fora da prévia. Armazenamento bloqueado, JSON inválido ou formato incompatível não interrompem as interações em memória. A consulta de sugestões é simulada e não acessa serviços externos.
+
+### Manutenção desta trilha
+
+- `scripts/project.mjs`: conteúdo didático das etapas, documentos HTML e JavaScript de cada versão, além do CSS compartilhado.
+- `scripts/project-render.mjs`: integração nos módulos, roadmap e comparação de linhas.
+- `scripts/build.mjs`: gera também o roadmap e os 48 arquivos independentes do projeto.
+- `assets/app.js`: apenas os controles de copiar, visualizar e comparar, separados do código do projeto.
+
+Após editar, execute `npm run build`. Os testes verificam arquivos gerados idênticos às fontes, sintaxe, progressão, reconstrução dos diffs, execução das 16 versões, isolamento das prévias, cópia/download, validação, persistência entre versões, assincronia, filtros, edição e layout responsivo.
 
 ## Referências técnicas em negrito
 

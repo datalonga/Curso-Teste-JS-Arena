@@ -1,5 +1,6 @@
 import { test, expect } from "@playwright/test";
 import { modules } from "../scripts/course.mjs";
+import { projectStages } from "../scripts/project.mjs";
 
 test("sumário, busca sem acentos, filtros, progresso e retomada", async ({
   page,
@@ -472,6 +473,11 @@ test("comandos ficam em negrito em todos os módulos e fora dos blocos executáv
         exercise.hint,
       ]),
       ...module.summary,
+      projectStages[index].explanation,
+      ...projectStages[index].changes,
+      projectStages[index].observe,
+      projectStages[index].challenge,
+      projectStages[index].expected,
     ];
     const expectedCount = texts.reduce(
       (total, text) => total + [...text.matchAll(/`([^`\n]+)`/g)].length,

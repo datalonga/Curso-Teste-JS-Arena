@@ -1,0 +1,29 @@
+:root { font-family: Arial, sans-serif; color: #21343c; background: #f2f3eb; }
+* { box-sizing: border-box; }
+body { margin: 0; padding: 24px; }
+main { max-width: 720px; margin: auto; background: white; padding: 28px; border: 1px solid #dce1d3; border-radius: 16px; }
+h1 { font-size: 32px; letter-spacing: -1px; margin: 8px 0 12px; }
+h2 { font-size: 18px; margin: 0 0 12px; }
+p { line-height: 1.7; }
+.etapa { color: #9e462b; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; }
+.apoio { color: #526757; background: #f1f5e9; border-radius: 8px; padding: 12px; font-size: 13px; }
+section { margin: 24px 0; }
+.resumo { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.resumo div { padding: 14px; background: #f7f7f1; border: 1px solid #e3e6d9; border-radius: 8px; }
+.resumo dt { font-size: 11px; color: #5c6b62; margin-bottom: 8px; }
+.resumo dd { font-weight: bold; margin: 0; font-size: 18px; }
+label { display: block; font-size: 13px; margin: 12px 0 6px; }
+input:not([type=checkbox]), select { width: 100%; padding: 11px; border: 1px solid #b6c2b2; border-radius: 5px; font: inherit; background: white; }
+button { border: 0; border-radius: 5px; padding: 10px 13px; margin: 10px 6px 0 0; background: #233b46; color: white; font: inherit; font-size: 12px; cursor: pointer; }
+button:disabled { opacity: .55; cursor: wait; }
+button.secundario { background: #e9eee1; color: #233b46; }
+:focus-visible { outline: 3px solid #c75231; outline-offset: 3px; }
+ul { list-style: none; padding: 0; }
+li { border-bottom: 1px solid #e9ecdf; padding: 12px 0; overflow-wrap: anywhere; }
+li label { display: inline-flex; align-items: center; gap: 9px; margin: 0 10px 0 0; }
+input[type=checkbox]:checked + span { text-decoration: line-through; color: #687a64; }
+li button { padding: 6px 9px; margin-top: 5px; }
+progress { width: 100%; height: 9px; accent-color: #4c7352; }
+#aviso, #persistencia, #carga { font-size: 12px; }
+[hidden] { display: none !important; }
+@media (max-width: 480px) { body { padding: 10px; } main { padding: 20px; } h1 { font-size: 27px; } .resumo { grid-template-columns: 1fr; } }

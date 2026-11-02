@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Meu plano de estudos · Etapa 12</title>
+  <link rel="stylesheet" href="estilo.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main>
+    <header>
+      <p class="etapa">Meu primeiro projeto · Etapa 12 de 16</p>
+      <h1>Meu plano de estudos</h1>
+      <p>Um lugar para organizar o que vou aprender com JavaScript.</p>
+    </header>
+    <!-- A estrutura HTML continua existindo quando o JavaScript não executa. -->
+    <p class="apoio">Estudar um pouco, experimentar e revisar: esse é o plano.</p>
+    <p>Plano de <strong id="nome-aluno">Lia</strong> · um assunto de cada vez.</p>
+    <p>Estimativa por assunto: 25 minutos. Os totais abaixo são atualizados pelo JavaScript.</p>
+    <dl class="resumo" aria-label="Resumo do plano">
+      <div><dt>Assuntos</dt><dd id="total">4</dd></div>
+      <div><dt>Concluídos</dt><dd id="concluidas">1</dd></div>
+      <div><dt>Tempo planejado</dt><dd id="tempo">100 min</dd></div>
+    </dl>
+    <p id="aviso" role="status" tabindex="-1">O plano está pronto para estudar.</p>
+    <section aria-labelledby="titulo-lista">
+      <h2 id="titulo-lista">Minha lista de estudos</h2>
+      <ul id="lista-estudos"></ul>
+      <p id="vazio" hidden>Nenhum assunto corresponde a esta visão.</p>
+    </section>
+    <section aria-label="Conclusão do plano">
+      <label for="progresso">Progresso de estudos</label>
+      <progress id="progresso" value="25" max="100">25%</progress>
+    </section>
+  </main>
+</body>
+</html>

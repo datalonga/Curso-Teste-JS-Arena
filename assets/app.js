@@ -218,6 +218,94 @@
     }
   }
 
+  // A página evolutiva usa os arquivos didáticos exibidos como texto, não código da interface.
+  function projectSnapshot(container) {
+    return Object.fromEntries(
+      ["html", "css", "js"].map((file) => [
+        file,
+        container.querySelector(`[data-project-file="${file}"]`).textContent,
+      ]),
+    );
+  }
+  function projectFrame(snapshot, label) {
+    const frame = document.createElement("iframe");
+    frame.title = label;
+    frame.setAttribute("sandbox", "allow-scripts allow-forms");
+    frame.setAttribute("referrerpolicy", "no-referrer");
+    const script = (source) =>
+      `<script>${source.replace(/<\/script/gi, "<\\/script")}<` + "/script>";
+    // Remove apenas as referências externas dos arquivos conhecidos. O download continua intacto.
+    let html = snapshot.html
+      .replace('<link rel="stylesheet" href="estilo.css">', "")
+      .replace('<script src="app.js" defer><' + "/script>", "");
+    html = html.replace(
+      "<head>",
+      `<head><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; form-action 'none'; base-uri 'none'">`,
+    );
+    html = html.replace(
+      "</head>",
+      `<style>${snapshot.css.replace(/<\/style/gi, "<\\/style")}
+      #project-console {max-width:720px;margin:20px auto;padding:18px;background:#203640;color:#e4eedd;border-radius:8px;}
+      #project-console h2{font:10px Arial,sans-serif;letter-spacing:1px;color:#bdcbbd;}
+      #console-output pre{white-space:pre-wrap;overflow-wrap:anywhere;font:11px/1.8 monospace;border-bottom:1px solid #ffffff15;padding:7px 0;margin:0;}
+      #console-output .error{color:#ffb9a2;}
+      </style></head>`,
+    );
+    html = html.replace(
+      "</body>",
+      `<section id="project-console" aria-label="Console da página"><h2>CONSOLE DA PÁGINA</h2><div id="console-output" role="log" aria-live="polite"></div></section>${script(`(${sandboxConsole.toString()})();`)}${script(snapshot.js)}</body>`,
+    );
+    frame.srcdoc = html;
+    return frame;
+  }
+  $$("[data-project-stage]").forEach((section) => {
+    const stage = Number(section.dataset.projectStage);
+    const output = $(".project-preview", section);
+    const frames = $(".project-preview-frames", section);
+    function show(compare = false) {
+      const figures = [];
+      function add(snapshot, label) {
+        const figure = document.createElement("figure");
+        const caption = document.createElement("figcaption");
+        caption.textContent = label;
+        figure.append(caption, projectFrame(snapshot, label));
+        figures.push(figure);
+      }
+      const previous = $("template[data-project-previous]", section);
+      if (compare && previous)
+        add(
+          projectSnapshot(previous.content),
+          `Anterior · Etapa ${previous.dataset.stage.padStart(2, "0")}`,
+        );
+      add(
+        projectSnapshot($(".project-files", section)),
+        `Atual · Etapa ${String(stage).padStart(2, "0")}`,
+      );
+      frames.replaceChildren(...figures);
+      frames.classList.toggle("is-comparing", figures.length === 2);
+      output.hidden = false;
+      $(".project-preview-status", section).textContent = compare
+        ? "Duas versões independentes. Compare a página e o console de cada uma."
+        : "Nova simulação desta etapa. Interaja com a página e observe o console.";
+    }
+    $(".project-run", section).addEventListener("click", () => show());
+    $(".project-compare", section)?.addEventListener("click", () => show(true));
+    $(".project-close", section).addEventListener("click", () => {
+      frames.replaceChildren();
+      output.hidden = true;
+      $(".project-run", section).focus();
+    });
+    $$("[data-project-copy]", section).forEach((button) =>
+      button.addEventListener("click", () => {
+        const code = $(
+          `.project-files [data-project-file="${button.dataset.projectCopy}"]`,
+          section,
+        );
+        copyText(code.textContent, button);
+      }),
+    );
+  });
+
   // This script runs INSIDE the sandbox, not in the course's origin.
   function sandboxConsole() {
     const output = document.querySelector("#console-output");

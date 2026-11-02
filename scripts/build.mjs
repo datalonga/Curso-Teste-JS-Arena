@@ -1,5 +1,7 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import { modules } from "./course.mjs";
+import { projectStages } from "./project.mjs";
+import { projectSection, projectOverview } from "./project-render.mjs";
 import {
   escapeHTML as e,
   formatLessonText as prose,
@@ -21,12 +23,12 @@ function sidebar(current, base) {
     <a class="course-back" href="${base}index.html">${icons.book} SEU GUIA DE ESTUDOS</a>
     <div class="side-course"><span class="mini-js">JS</span><div><strong>JavaScript em prática</strong><span>Do zero ao seu primeiro projeto</span></div></div>
     <div class="progress-box"><div class="progress-label"><span>Seu progresso</span><strong data-progress-percent>0%</strong></div><progress data-course-progress max="16" value="0" aria-label="Módulos concluídos">0 de 16</progress><p><span data-progress-count>0</span> de 16 módulos concluídos</p></div>
+    <a class="project-sidebar-link" href="${base}projeto/index.html"><span aria-hidden="true">↗</span> Uma página, 16 evoluções</a>
     <nav class="module-nav" aria-label="Módulos">${modules.map((m, i) => `${i === 0 || m.group !== modules[i - 1].group ? `<p class="nav-group">${e(m.group)}</p>` : ""}<a href="${base}modulos/${pad(i + 1)}.html" class="module-link ${current === i + 1 ? "active" : ""}" data-module-link="${i + 1}" ${current === i + 1 ? 'aria-current="page"' : ""}><span class="nav-number">${pad(i + 1)}</span><span>${e(m.title)}</span><span class="nav-check" aria-label="Concluído" hidden>✓</span></a>`).join("")}</nav>
     <div class="sidebar-note"><span aria-hidden="true">✦</span><p>Um conceito de cada vez.<br><strong>Uma nova possibilidade a cada aula.</strong></p></div>
   </aside>`;
 }
-function layout(title, content, current = 0) {
-  const base = current ? "../" : "./";
+function layout(title, content, current = 0, base = current ? "../" : "./") {
   return `<!doctype html>
 <html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="${e(current ? plainLessonText(modules[current - 1].intro) : "Aprenda JavaScript do zero ao intermediário com 16 módulos, exemplos executáveis e exercícios. Um curso gratuito, direto no navegador.")}"/><meta name="theme-color" content="#faf9f6"><title>${e(title)} · JavaScript em prática</title><link rel="icon" href="${base}assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="${base}assets/styles.css"><script src="${base}assets/app.js" defer></script></head>
 <body data-module="${current}"><a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
@@ -40,11 +42,24 @@ function codeBlock(code, html, label = "Exemplo prático") {
 const totalMinutes = modules.reduce((sum, m) => sum + m.duration, 0);
 const home = `<section class="hero" aria-labelledby="hero-title"><div class="hero-copy"><div class="eyebrow"><span class="small-line"></span> SEU PRÓXIMO PASSO COMEÇA AQUI</div><h1 id="hero-title">Pequenas linhas.<br>Grandes <span>possibilidades.</span></h1><p>Aprenda JavaScript de verdade. Dos primeiros conceitos ao seu próprio projeto, com explicações claras e código que você pode experimentar.</p><div class="hero-actions"><a class="button primary" href="./modulos/01.html" data-resume>Começar a aprender ${chevron}</a><a class="text-link" href="#trilha">Conhecer a trilha <span aria-hidden="true">↓</span></a></div><div class="hero-caption"><span class="status-dot"></span> Gratuito. No seu ritmo. Direto no navegador.</div></div><div class="hero-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="art-top"><span>APRENDA. EXPERIMENTE. CRIE.</span><span>01 — 16</span></div><div class="js-tile"><span class="tile-star">✳</span><strong>JS<span>.</span></strong><span class="tile-bottom">UMA LINGUAGEM.<br>INFINITAS IDEIAS.</span></div><div class="floating-code"><div class="window-dots"><i></i><i></i><i></i><span>primeiro-passo.js</span></div><code><span class="syntax-purple">const</span> futuro = <span class="syntax-green">"criar"</span>;<br><span class="syntax-blue">console</span>.log(futuro);<br><span class="syntax-comment">// tudo começa com uma linha.</span></code></div><span class="art-plus plus-one">+</span><span class="art-plus plus-two">+</span><span class="art-caption">DO ZERO AO PRIMEIRO PROJETO <span>↗</span></span></div></section>
 <section class="course-stats" aria-label="Informações do curso"><div>${icons.book}<span><strong>16 módulos</strong><small>Uma trilha bem organizada</small></span></div><div>${icons.code}<span><strong>Aprenda fazendo</strong><small>Exemplos e exercícios práticos</small></span></div><div>${icons.clock}<span><strong>~${Math.round(totalMinutes / 60)} horas de conteúdo</strong><small>Iniciante ao intermediário</small></span></div></section>
+<section class="project-home-link"><span class="eyebrow">APRENDA ACOMPANHANDO UMA CONSTRUÇÃO REAL</span><h2>O mesmo HTML. Novas possibilidades a cada módulo.</h2><p>Veja uma página simples virar um plano de estudos interativo, em 16 etapas com explicações, comparação e arquivos completos.</p><a href="./projeto/index.html">Conhecer a página em evolução →</a></section>
 <section class="curriculum" id="trilha" aria-labelledby="curriculum-title"><div class="section-heading"><div><div class="eyebrow">O CAMINHO ATÉ O SEU PRIMEIRO PROJETO</div><h2 id="curriculum-title">Sua trilha de aprendizado<span>.</span></h2><p>Comece pelo básico. Conecte as ideias. Coloque em prática.</p></div><span class="count-tag">16 MÓDULOS <span aria-hidden="true">↘</span></span></div><div class="curriculum-tools"><div class="filter-tabs" role="group" aria-label="Filtrar módulos"><button class="filter-tab selected" type="button" data-filter="all" aria-pressed="true">Todos os módulos <span>16</span></button><button class="filter-tab" type="button" data-filter="pending" aria-pressed="false">Não concluídos</button><button class="filter-tab" type="button" data-filter="done" aria-pressed="false">Concluídos</button></div><label class="search-field">${icons.search}<span class="sr-only">Buscar módulos por título, assunto ou conteúdo</span><input id="module-search" type="search" placeholder="Buscar um assunto..."></label></div>
 <div class="curriculum-list">${modules.map((m, i) => `<article class="module-card" data-card="${i + 1}" data-search="${e([m.title, m.short, plainLessonText(m.intro), m.group, ...m.sections.map((s) => s.title)].join(" "))}"><a href="./modulos/${pad(i + 1)}.html"><span class="card-number">${pad(i + 1)}</span><div class="card-content"><div class="card-category">${e(m.group)}${i === 15 ? ' <span class="project-tag">PROJETO FINAL</span>' : ""}</div><h3>${e(m.title)}</h3><p>${e(m.short)}</p></div><span class="card-meta"><span class="card-time">${icons.clock} ${m.duration} min</span><span class="card-status">Começar <span aria-hidden="true">↗</span></span></span></a></article>`).join("")}</div><p class="no-results" hidden>Nenhum módulo encontrado. Tente outro assunto ou filtro.</p><p class="results-count sr-only" aria-live="polite"></p></section>
 <section class="closing-note"><div class="closing-icon" aria-hidden="true">{ }</div><div><div class="eyebrow">NÃO PRECISA SABER TUDO PARA COMEÇAR</div><h2>Só precisa dar o primeiro passo.</h2><p>Cada módulo traz objetivos, exemplos, exercícios e um resumo para fixar o que importa.</p></div><a href="./modulos/01.html" aria-label="Ir ao primeiro módulo">${chevron}</a></section>`;
 
 await mkdir("modulos", { recursive: true });
+await mkdir("projeto", { recursive: true });
+for (const stage of projectStages) {
+  const directory = `projeto/${pad(stage.id)}`;
+  await mkdir(directory, { recursive: true });
+  await writeFile(`${directory}/index.html`, stage.html);
+  await writeFile(`${directory}/estilo.css`, stage.css);
+  await writeFile(`${directory}/app.js`, stage.js + "\n");
+}
+await writeFile(
+  "projeto/index.html",
+  layout("Uma página, 16 evoluções", projectOverview(projectStages), 0, "../"),
+);
 await writeFile(
   "index.html",
   layout("Aprenda a transformar ideias em código", home),
@@ -53,14 +68,18 @@ for (const [i, m] of modules.entries()) {
   const id = i + 1;
   const content = `<div class="breadcrumb"><a href="../index.html">O curso</a><span aria-hidden="true">/</span><span>${e(m.group)}</span><span aria-hidden="true">/</span><strong>Módulo ${pad(id)}</strong></div><header class="lesson-header"><div class="lesson-kicker"><span class="eyebrow">MÓDULO ${pad(id)} DE 16</span><span>${icons.clock} ${m.duration} min de estudo</span></div><h1>${e(m.title)}<span>.</span></h1><p>${prose(m.intro)}</p><div class="lesson-badges"><span>${e(m.group)}</span><span>${id < 7 ? "Fundamentos para iniciantes" : id < 11 ? "Construindo a lógica" : "Aplicação na web"}</span><span>${m.sections.length} tópicos</span><span>${m.exercises.length} exercícios</span></div></header>
 <div class="lesson-layout"><article class="lesson-article"><section class="objectives" id="objetivos"><div class="eyebrow"><span aria-hidden="true">↗</span> AO FINAL DESTE MÓDULO, VOCÊ VAI</div><ul>${m.objectives.map((o) => `<li><span aria-hidden="true">✓</span><span class="objective-text">${prose(o)}</span></li>`).join("")}</ul></section>
+<a class="project-module-jump" href="#pagina-em-evolucao">Acompanhe este assunto no projeto: ${e(projectStages[i].title)} <span aria-hidden="true">↓</span></a>
 <div class="practice-notice">${icons.code}<p><strong>Leia, experimente e observe.</strong> Os exemplos só executam ao clicar em “Executar”, em uma área isolada. Para experimentar mudanças, copie o código para o console do navegador ou um arquivo próprio.</p></div>
 ${m.sections.map((s, j) => `<section class="lesson-section" id="parte-${j + 1}"><div class="section-index">${pad(j + 1)} <span></span></div><h2>${e(s.title)}</h2>${s.text.map((p) => `<p>${prose(p)}</p>`).join("")}${s.code ? codeBlock(s.code, s.html) : ""}</section>`).join("")}
 <div class="advice-grid" id="cuidados"><section class="advice mistakes"><h2><span aria-hidden="true">!</span> Erros comuns</h2><ul>${m.mistakes.map((p) => `<li>${prose(p)}</li>`).join("")}</ul></section><section class="advice good-practices"><h2><span aria-hidden="true">✓</span> Boas práticas</h2><ul>${m.practices.map((p) => `<li>${prose(p)}</li>`).join("")}</ul></section></div>
+${projectSection(projectStages[i], projectStages[i - 1])}
 <section class="lesson-section exercises" id="exercicios"><div class="eyebrow">AGORA É COM VOCÊ</div><h2>Transforme leitura em prática<span>.</span></h2><p>Tente resolver antes de abrir a resposta. Há mais de uma maneira de chegar ao resultado.</p>${m.exercises.map((ex, j) => `<div class="exercise"><div class="exercise-heading"><span>${pad(j + 1)}</span><h3>${prose(ex.prompt)}</h3></div><details class="hint"><summary>Preciso de uma dica</summary><p>${prose(ex.hint)}</p></details><details class="solution"><summary>Conferir uma solução possível <span aria-hidden="true">+</span></summary>${codeBlock(ex.solution, ex.html, "Uma solução possível")}</details></div>`).join("")}</section>
 <section class="lesson-summary" id="resumo"><div class="eyebrow">GUARDE ESTAS IDEIAS</div><h2>Em poucas palavras<span>.</span></h2><ul>${m.summary.map((p) => `<li>${prose(p)}</li>`).join("")}</ul></section>
 <section class="completion-panel"><div><span class="eyebrow">MAIS UM PASSO NA SUA JORNADA</span><h2>${id === 16 ? "Seu primeiro projeto é só o começo." : "Pronto para seguir em frente?"}</h2><p>Terminou a leitura e os exercícios? Registre sua conquista.</p></div><button class="button primary complete-button" type="button" data-complete="${id}" aria-pressed="false"><span aria-hidden="true">✓</span> Marcar como concluído</button></section>
 <nav class="lesson-pagination" aria-label="Navegação entre módulos">${i > 0 ? `<a href="./${pad(id - 1)}.html"><small>← MÓDULO ANTERIOR</small><strong>${e(modules[i - 1].title)}</strong></a>` : '<a href="../index.html#trilha"><small>← VOLTAR</small><strong>Sumário do curso</strong></a>'}${id < 16 ? `<a class="next-lesson" href="./${pad(id + 1)}.html"><small>PRÓXIMO MÓDULO →</small><strong>${e(modules[i + 1].title)}</strong></a>` : '<a class="next-lesson" href="../index.html#trilha"><small>SUA JORNADA CONTINUA ↗</small><strong>Revisitar a trilha</strong></a>'}</nav></article>
-<aside class="lesson-toc" aria-label="Nesta página"><span class="eyebrow">NESTA PÁGINA</span><nav><a href="#objetivos">Objetivos</a>${m.sections.map((s, j) => `<a href="#parte-${j + 1}">${e(s.title)}</a>`).join("")}<a href="#cuidados">Erros e boas práticas</a><a href="#exercicios">Exercícios</a><a href="#resumo">Resumo</a></nav><p>Não tenha pressa.<br>Experimente cada ideia.</p></aside></div>`;
+<aside class="lesson-toc" aria-label="Nesta página"><span class="eyebrow">NESTA PÁGINA</span><nav><a href="#objetivos">Objetivos</a>${m.sections.map((s, j) => `<a href="#parte-${j + 1}">${e(s.title)}</a>`).join("")}<a href="#cuidados">Erros e boas práticas</a><a href="#pagina-em-evolucao">Página em evolução</a><a href="#exercicios">Exercícios</a><a href="#resumo">Resumo</a></nav><p>Não tenha pressa.<br>Experimente cada ideia.</p></aside></div>`;
   await writeFile(`modulos/${pad(id)}.html`, layout(m.title, content, id));
 }
-console.log(`Gerados index.html e ${modules.length} módulos HTML.`);
+console.log(
+  `Gerados index.html e ${modules.length} módulos HTML com 16 etapas do projeto.`,
+);
