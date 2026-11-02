@@ -1029,8 +1029,11 @@ progress::-moz-progress-bar {
   line-height: 1.6;
   margin-top: 10px;
 }
-.objectives li > span {
+.objectives li > span[aria-hidden] {
   color: #6d8868;
+}
+.objectives .objective-text {
+  min-width: 0;
 }
 .practice-notice {
   display: flex;
@@ -1078,6 +1081,11 @@ progress::-moz-progress-bar {
   letter-spacing: -0.7px;
   line-height: 1.3;
   margin-bottom: 17px;
+}
+.language-command {
+  font-weight: 700;
+  color: inherit;
+  overflow-wrap: anywhere;
 }
 .lesson-section > p {
   font-size: 13px;

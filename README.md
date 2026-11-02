@@ -56,6 +56,14 @@ O iframe não pode ler o documento principal ou seu armazenamento. Por isso, os 
 
 O botão Copiar usa a API de clipboard, com alternativa para ambientes sem essa API e mensagem de orientação se o navegador negar a cópia. A validação de formulário no cliente é apresentada como recurso de experiência, não como substituto da validação no servidor.
 
+## Referências técnicas em negrito
+
+Nos textos didáticos dos 16 módulos, comandos, métodos e APIs usam crases como marcação editorial: por exemplo, `` `append()` `` e `` `const` ``. A geração transforma essas referências em `<strong class="language-command">`, com peso de fonte 700. A marcação é explícita para não confundir comandos com palavras comuns em português, como “for” e “continue”.
+
+A formatação cobre introduções, objetivos, explicações, erros comuns, boas práticas, enunciados, dicas e resumos. `formatLessonText()` em `scripts/html.mjs` escapa tanto texto comum quanto referências, sem aceitar HTML editorial arbitrário. Metadados e busca usam texto sem delimitadores. Os blocos de código, as soluções e o HTML de apoio continuam passando apenas pelo escape de HTML; copiar e executar não inclui marcação de negrito.
+
+Ao adicionar um comando às explicações, delimite a referência com crases. Não adicione essas marcações dentro dos códigos dos exemplos. O build não tenta adivinhar palavras-chave ou modificar o conteúdo durante a navegação.
+
 ## Editar o conteúdo
 
 Edite o conteúdo inicial em `scripts/course.mjs` ou os aprofundamentos em `scripts/course-expansions.mjs`. Os aprofundamentos são associados pelo número do módulo e anexados às seções existentes, preservando a sequência e os exemplos iniciais. Ajuste os templates em `scripts/build.mjs` quando necessário. Depois regenere:
